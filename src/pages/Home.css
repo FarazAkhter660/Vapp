@@ -1,0 +1,116 @@
+.vera-header {
+  --background: #0f1115;
+  --color: #e5e7eb;
+}
+
+.vera-logo {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 auto;
+}
+
+.profile-dot {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #8fa3ff;
+}
+
+.vera-content {
+  --background: #0f1115;
+  color: #e5e7eb;
+}
+
+.theme-toggle {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+}
+
+.center-content {
+  max-width: 360px;
+  margin: 120px auto 0;
+  text-align: center;
+}
+
+.center-content h1 {
+  font-size: 32px;
+  font-weight: 500;
+  margin-bottom: 24px;
+}
+
+.input-card {
+  background: #14171c;
+  border-radius: 18px;
+  padding: 16px;
+  margin-bottom: 28px;
+}
+
+.vera-input {
+  --color: #e5e7eb;
+  margin-bottom: 12px;
+}
+
+.input-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.attach-btn {
+  color: #9ca3af;
+}
+
+.send-btn {
+  --background: #1f2937;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+}
+
+.quick-actions {
+  margin-top: 10px;
+}
+
+.action-card {
+  text-align: center;
+}
+
+.icon-box {
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  margin: 0 auto 8px;
+}
+
+.gradient-1 {
+  background: linear-gradient(135deg, #f97316, #ec4899);
+}
+
+.gradient-2 {
+  background: linear-gradient(135deg, #22c55e, #14b8a6);
+}
+
+.gradient-3 {
+  background: linear-gradient(135deg, #3b82f6, #a855f7);
+}
+
+.icon-box.dark {
+  background: #1f2937;
+}
+
+.action-card p {
+  font-size: 12px;
+  line-height: 1.2;
+}
+
+.discover-btn {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #14171c;
+  padding: 10px 22px;
+  border-radius: 20px;
+  font-size: 14px;
+}
