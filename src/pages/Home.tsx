@@ -5,20 +5,21 @@ import {
   IonButtons,
   IonButton,
   IonIcon,
+  IonFooter,
   IonContent,
-} from '@ionic/react'
-import { menuOutline } from 'ionicons/icons'
+} from "@ionic/react";
+import { menuOutline } from "ionicons/icons";
 
-import Sidebar from '../components/Sidebar'
-import ChatInput from '../components/ChatInput'
-import { useSidebar } from '../stores/sidebar'
-import { useChatHandler } from '../hooks/useChatHandler'
+import Sidebar from "../components/Sidebar";
+import ChatInput from "../components/ChatInput";
+import { useSidebar } from "../stores/sidebar";
+import { useChatHandler } from "../hooks/useChatHandler";
 
-import './Home.css'
+import "./Home.css";
 
 const Home = () => {
-  const { open, toggle } = useSidebar()
-  const { handleMessage } = useChatHandler()
+  const { open, toggle } = useSidebar();
+  const { handleMessage } = useChatHandler();
 
   return (
     <IonPage>
@@ -37,18 +38,19 @@ const Home = () => {
       <IonContent fullscreen className="vera-content">
         <Sidebar />
 
-        <div className={`home-wrapper ${open ? 'sidebar-open' : ''}`}>
+        <div className={`home-wrapper ${open ? "sidebar-open" : ""}`}>
           <div className="center-content">
             <h1>How can I help?</h1>
           </div>
 
           <div className="discover-btn">Discover</div>
-
-          <ChatInput onMessage={(text) => handleMessage(text)} />
         </div>
+        <IonFooter className="chat-footer">
+          <ChatInput onMessage={(text) => handleMessage(text)} />
+        </IonFooter>
       </IonContent>
     </IonPage>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
