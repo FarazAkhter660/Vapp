@@ -6,23 +6,17 @@ import {
   IonButton,
   IonIcon,
   IonContent,
-  IonInput,
   IonGrid,
   IonRow,
   IonCol,
-} from '@ionic/react'
-import {
-  menuOutline,
-  moonOutline,
-  arrowForwardOutline,
-  attachOutline,
-} from 'ionicons/icons'
-import './Home.css'
+} from "@ionic/react";
+import { menuOutline } from "ionicons/icons";
+import ChatInput from "../components/ChatInput";
+import "./Home.css";
 
 const Home = () => {
   return (
     <IonPage>
-      {/* Header */}
       <IonHeader>
         <IonToolbar className="vera-header">
           <IonButtons slot="start">
@@ -41,35 +35,12 @@ const Home = () => {
         </IonToolbar>
       </IonHeader>
 
-      {/* Content */}
       <IonContent fullscreen className="vera-content">
-        <IonButton className="theme-toggle" fill="clear">
-          <IonIcon icon={moonOutline} />
-        </IonButton>
-
         <div className="center-content">
           <h1>How can I help?</h1>
 
-          <div className="input-card">
-            <IonInput
-              placeholder="Ask me anything..."
-              className="vera-input"
-            />
-
-            <div className="input-actions">
-              <IonButton fill="clear" className="attach-btn">
-                <IonIcon icon={attachOutline} />
-                Attach
-              </IonButton>
-
-              <IonButton className="send-btn">
-                <IonIcon icon={arrowForwardOutline} />
-              </IonButton>
-            </div>
-          </div>
-
           <IonGrid className="quick-actions">
-            <IonRow>
+            {/* <IonRow>
               <IonCol size="3">
                 <div className="action-card">
                   <div className="icon-box gradient-1" />
@@ -97,16 +68,15 @@ const Home = () => {
                   <p>See<br />all</p>
                 </div>
               </IonCol>
-            </IonRow>
+            </IonRow> */}
           </IonGrid>
         </div>
 
-        <div className="discover-btn">
-          Discover
-        </div>
+        <div className="discover-btn">Discover</div>
+        <ChatInput />
       </IonContent>
     </IonPage>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

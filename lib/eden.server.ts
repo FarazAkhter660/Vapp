@@ -1,12 +1,12 @@
-// import { treaty } from '@elysiajs/eden'
+import { treaty } from '@elysiajs/eden'
 
-// const API_ENDPOINT =
-//   import.meta.env.VITE_API_ENDPOINT ?? 'https://workers.vera.sc'
+const API_ENDPOINT =
+  import.meta.env.VITE_API_ENDPOINT ?? 'https://workers.vera.sc'
 
-// const EdenClient = treaty(API_ENDPOINT, {
-//   fetch: {
-//     credentials: 'include',
-//   },
-// })
+const EdenClient = treaty(API_ENDPOINT, {
+  fetch: {
+    credentials: 'include',
+  },
+})
 
-// export default EdenClient
+export default EdenClient
