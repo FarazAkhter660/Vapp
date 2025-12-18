@@ -6,15 +6,19 @@ import {
   IonButton,
   IonIcon,
   IonContent,
-} from "@ionic/react";
-import { menuOutline } from "ionicons/icons";
-import ChatInput from "../components/ChatInput";
-import Sidebar from "../components/Sidebar";
-import { useSidebar } from "../stores/sidebar";
-import "./Home.css";
+} from '@ionic/react'
+import { menuOutline } from 'ionicons/icons'
+
+import Sidebar from '../components/Sidebar'
+import ChatInput from '../components/ChatInput'
+import { useSidebar } from '../stores/sidebar'
+import { useChatHandler } from '../hooks/useChatHandler'
+
+import './Home.css'
 
 const Home = () => {
-  const { open, toggle } = useSidebar();
+  const { open, toggle } = useSidebar()
+  const { handleMessage } = useChatHandler()
 
   return (
     <IonPage>
@@ -32,17 +36,19 @@ const Home = () => {
 
       <IonContent fullscreen className="vera-content">
         <Sidebar />
-        <div className={`home-wrapper ${open ? "sidebar-open" : ""}`}>
+
+        <div className={`home-wrapper ${open ? 'sidebar-open' : ''}`}>
           <div className="center-content">
             <h1>How can I help?</h1>
           </div>
 
           <div className="discover-btn">Discover</div>
-          <ChatInput />
+
+          <ChatInput onMessage={(text) => handleMessage(text)} />
         </div>
       </IonContent>
     </IonPage>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home

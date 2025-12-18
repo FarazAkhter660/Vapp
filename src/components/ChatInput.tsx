@@ -1,11 +1,14 @@
 import { IonButton, IonIcon, IonTextarea } from "@ionic/react";
-import { attachOutline, arrowForwardOutline } from "ionicons/icons";
 import "./ChatInput.css";
 import darkArrow from "../../app/assets/darkArrow.svg";
 import attachment from "../../app/assets/attachment.svg";
 import arrow from "../../app/assets/arrow.svg";
 
-const ChatInput = () => {
+interface ChatInputProps {
+  onMessage: (message: string) => void;
+}
+
+const ChatInput = ({ onMessage }: ChatInputProps) => {
   return (
     <div className="chat-input-wrapper">
       <div className="chat-input-container">
