@@ -5,7 +5,6 @@ import {
   IonButtons,
   IonButton,
   IonIcon,
-  IonFooter,
   IonContent,
 } from "@ionic/react";
 import { menuOutline } from "ionicons/icons";
@@ -41,13 +40,11 @@ const Home = () => {
         <div className={`home-wrapper ${open ? "sidebar-open" : ""}`}>
           <div className="center-content">
             <h1>How can I help?</h1>
+            <ChatInput onMessage={(text) => handleMessage(text)} />
           </div>
 
           <div className="discover-btn">Discover</div>
         </div>
-        <IonFooter className="chat-footer">
-          <ChatInput onMessage={(text) => handleMessage(text)} />
-        </IonFooter>
       </IonContent>
     </IonPage>
   );
