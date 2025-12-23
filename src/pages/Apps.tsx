@@ -264,21 +264,45 @@ const Apps = () => {
 
       <IonContent fullscreen>
         <IonGrid>
-          <IonRow className="p-3">
+          <IonRow>
             {cards.map((card) => (
-              <IonCol size="6" key={card.key} className="p-2">
+              <IonCol size="6" key={card.key} style={{ padding: "8px" }}>
                 <div
-                  style={getCardStyle(card.key, isDark)}
-                  className="relative w-full aspect-square rounded-xl overflow-hidden p-3 flex"
+                  style={{
+                    ...getCardStyle(card.key, isDark),
+                    width: "100%",
+                    height: "180px",
+                    borderRadius: "16px",
+                    overflow: "hidden",
+                    padding: "12px",
+                    position: "relative",
+                    display: "flex",
+                    alignItems: "flex-start",
+                  }}
                 >
-                  <span className="text-white font-semibold text-base leading-tight z-10">
+                  <span
+                    style={{
+                      color: "#fff",
+                      fontWeight: 600,
+                      fontSize: "16px",
+                      lineHeight: "1.2",
+                      zIndex: 2,
+                    }}
+                  >
                     {card.title}
                   </span>
 
                   <img
                     src={isDark ? card.dark : card.light}
                     alt={card.title}
-                    className="absolute right-3 bottom-3 h-[55%] max-w-[60%] object-contain"
+                    style={{
+                      position: "absolute",
+                      right: "12px",
+                      bottom: "12px",
+                      height: "60%",
+                      maxWidth: "65%",
+                      objectFit: "contain",
+                    }}
                   />
                 </div>
               </IonCol>
