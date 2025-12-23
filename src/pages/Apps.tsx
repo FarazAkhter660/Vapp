@@ -6,6 +6,9 @@ import {
   IonTitle,
   IonButtons,
   IonBackButton,
+  IonGrid,
+  IonRow,
+  IonCol,
 } from "@ionic/react";
 import { CSSProperties, useMemo } from "react";
 
@@ -204,13 +207,48 @@ const Apps = () => {
 
   const cards = [
     { key: "qa", title: "Q&A", light: qaLight, dark: qaDark },
-    { key: "generateImage", title: "Create images", light: imageLight, dark: imageDark },
-    { key: "resumeBuilder", title: "Resume builder", light: resumeLight, dark: resumeDark },
-    { key: "videoGeneration", title: "Create videos", light: videoLight, dark: videoDark },
-    { key: "createApp", title: "Create an app", light: appLight, dark: appDark },
-    { key: "createIllustrations", title: "Create illustrations", light: illustrationsLight, dark: illustrationsDark },
-    { key: "productivityTools", title: "Productivity tools", light: productivityLight, dark: productivityDark },
-    { key: "createSlides", title: "Create slides", light: slidesLight, dark: slidesDark },
+    {
+      key: "generateImage",
+      title: "Create images",
+      light: imageLight,
+      dark: imageDark,
+    },
+    {
+      key: "resumeBuilder",
+      title: "Resume builder",
+      light: resumeLight,
+      dark: resumeDark,
+    },
+    {
+      key: "videoGeneration",
+      title: "Create videos",
+      light: videoLight,
+      dark: videoDark,
+    },
+    {
+      key: "createApp",
+      title: "Create an app",
+      light: appLight,
+      dark: appDark,
+    },
+    {
+      key: "createIllustrations",
+      title: "Create illustrations",
+      light: illustrationsLight,
+      dark: illustrationsDark,
+    },
+    {
+      key: "productivityTools",
+      title: "Productivity tools",
+      light: productivityLight,
+      dark: productivityDark,
+    },
+    {
+      key: "createSlides",
+      title: "Create slides",
+      light: slidesLight,
+      dark: slidesDark,
+    },
   ];
 
   return (
@@ -225,26 +263,28 @@ const Apps = () => {
       </IonHeader>
 
       <IonContent fullscreen>
-        <div className="ion-padding">
-          <div className="grid grid-cols-2 gap-3">
+        <IonGrid>
+          <IonRow className="p-3">
             {cards.map((card) => (
-              <div
-                key={card.key}
-                style={getCardStyle(card.key, isDark)}
-                className="relative rounded-xl overflow-hidden min-h-[120px] flex items-start p-3"
-              >
-                <span className="text-white font-semibold text-base leading-tight z-10">
-                  {card.title}
-                </span>
-                <img
-                  src={isDark ? card.dark : card.light}
-                  alt={card.title}
-                  className="absolute right-2 bottom-2 h-[45%] object-contain"
-                />
-              </div>
+              <IonCol size="6" key={card.key} className="p-2">
+                <div
+                  style={getCardStyle(card.key, isDark)}
+                  className="relative w-full aspect-square rounded-xl overflow-hidden p-3 flex"
+                >
+                  <span className="text-white font-semibold text-base leading-tight z-10">
+                    {card.title}
+                  </span>
+
+                  <img
+                    src={isDark ? card.dark : card.light}
+                    alt={card.title}
+                    className="absolute right-3 bottom-3 h-[55%] max-w-[60%] object-contain"
+                  />
+                </div>
+              </IonCol>
             ))}
-          </div>
-        </div>
+          </IonRow>
+        </IonGrid>
       </IonContent>
     </IonPage>
   );
