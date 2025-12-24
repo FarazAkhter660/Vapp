@@ -10,7 +10,8 @@ import {
   IonRow,
   IonCol,
 } from "@ionic/react";
-import { CSSProperties, useMemo } from "react";
+import { CSSProperties, useMemo, useState } from "react";
+import AppModal from "./AppModal";
 
 import qaLight from "../../app/assets/q&atest.svg";
 import qaDark from "../../app/assets/dark-q&a.svg";
@@ -49,16 +50,6 @@ const cardStyles: { [key: string]: CSSProperties } = {
       radial-gradient(at 5% 92%, #c2fdd3 0px, transparent 50%),
       radial-gradient(at 94% 7%, #e2fed8 0px, transparent 50%),
       radial-gradient(at 94% 92%, #b3f8d9 0px, transparent 50%)
-    `,
-  },
-  createSlides: {
-    border: "1px solid #bcc6d9",
-    backgroundColor: "#acacf5",
-    backgroundImage: `
-      radial-gradient(at 7% 5%, #c4c0f9 0px, transparent 50%),
-      radial-gradient(at 5% 90%, #adc9fa 0px, transparent 50%),
-      radial-gradient(at 90% 6%, #b6c3fd 0px, transparent 50%),
-      radial-gradient(at 90% 91%, #c4eefe 0px, transparent 50%)
     `,
   },
   resumeBuilder: {
@@ -111,89 +102,27 @@ const cardStyles: { [key: string]: CSSProperties } = {
       radial-gradient(at 95% 88%, #bfcef8 0px, transparent 50%)
     `,
   },
+  createSlides: {
+    border: "1px solid #bcc6d9",
+    backgroundColor: "#acacf5",
+    backgroundImage: `
+      radial-gradient(at 7% 5%, #c4c0f9 0px, transparent 50%),
+      radial-gradient(at 5% 90%, #adc9fa 0px, transparent 50%),
+      radial-gradient(at 90% 6%, #b6c3fd 0px, transparent 50%),
+      radial-gradient(at 90% 91%, #c4eefe 0px, transparent 50%)
+    `,
+  },
 };
 
 const darkCardStyles: { [key: string]: CSSProperties } = {
-  qa: {
-    border: "1px solid #123ea5",
-    backgroundColor: "#1937cc",
-    backgroundImage: `
-      radial-gradient(at 8% 10%, #0d68c7 0px, transparent 50%),
-      radial-gradient(at 12% 80%, #1645bb 0px, transparent 50%),
-      radial-gradient(at 80% 14%, #1e1ed2 0px, transparent 50%),
-      radial-gradient(at 92% 87%, #154298 0px, transparent 50%)
-    `,
-  },
-  generateImage: {
-    border: "1px solid #229557",
-    backgroundColor: "#14c86a",
-    backgroundImage: `
-      radial-gradient(at 4% 7%, #14c564 0px, transparent 50%),
-      radial-gradient(at 5% 92%, #14c14a 0px, transparent 50%),
-      radial-gradient(at 94% 7%, #31d729 0px, transparent 50%),
-      radial-gradient(at 94% 92%, #13c275 0px, transparent 50%)
-    `,
-  },
-  createSlides: {
-    border: "1px solid #1950c4",
-    backgroundColor: "#2323e4",
-    backgroundImage: `
-      radial-gradient(at 7% 5%, #2a1ee0 0px, transparent 50%),
-      radial-gradient(at 5% 90%, #1163ed 0px, transparent 50%),
-      radial-gradient(at 90% 6%, #1941e5 0px, transparent 50%),
-      radial-gradient(at 90% 91%, #0e6fbe 0px, transparent 50%)
-    `,
-  },
-  resumeBuilder: {
-    border: "1px solid #1368bb",
-    backgroundColor: "#136ac4",
-    backgroundImage: `
-      radial-gradient(at 3% 6%, #136fc4 0px, transparent 50%),
-      radial-gradient(at 3% 94%, #2569d4 0px, transparent 50%),
-      radial-gradient(at 96% 6%, #1479de 0px, transparent 50%),
-      radial-gradient(at 93% 89%, #0a86c4 0px, transparent 50%)
-    `,
-  },
-  videoGeneration: {
-    border: "1px solid #c66213",
-    backgroundColor: "#ed8632",
-    backgroundImage: `
-      radial-gradient(at 2% 4%, #eb963a 0px, transparent 50%),
-      radial-gradient(at 12% 79%, #e78c43 0px, transparent 50%),
-      radial-gradient(at 97% 4%, #f56d57 0px, transparent 50%),
-      radial-gradient(at 93% 99%, #f86868 0px, transparent 50%)
-    `,
-  },
-  createApp: {
-    border: "1px solid #af5513",
-    backgroundColor: "#fc9945",
-    backgroundImage: `
-      radial-gradient(at 4% 7%, #fa9c52 0px, transparent 50%),
-      radial-gradient(at 5% 93%, #ffdf3b 0px, transparent 50%),
-      radial-gradient(at 93% 5%, #fca051 0px, transparent 50%),
-      radial-gradient(at 90% 99%, #f7b725 0px, transparent 50%)
-    `,
-  },
-  createIllustrations: {
-    border: "1px solid #b7109b",
-    backgroundColor: "#dd39c0",
-    backgroundImage: `
-      radial-gradient(at 6% 7%, #d829bb 0px, transparent 50%),
-      radial-gradient(at 8% 88%, #d131b3 0px, transparent 50%),
-      radial-gradient(at 69% 5%, #d134a9 0px, transparent 50%),
-      radial-gradient(at 90% 88%, #da4089 0px, transparent 50%)
-    `,
-  },
-  productivityTools: {
-    border: "1px solid #3d16be",
-    backgroundColor: "#3e16d1",
-    backgroundImage: `
-      radial-gradient(at 7% 5%, #3f17cf 0px, transparent 50%),
-      radial-gradient(at 7% 89%, #2e19d2 0px, transparent 50%),
-      radial-gradient(at 94% 8%, #9c17d2 0px, transparent 50%),
-      radial-gradient(at 95% 88%, #1849d0 0px, transparent 50%)
-    `,
-  },
+  qa: { backgroundColor: "#1937cc" },
+  generateImage: { backgroundColor: "#14c86a" },
+  resumeBuilder: { backgroundColor: "#136ac4" },
+  videoGeneration: { backgroundColor: "#ed8632" },
+  createApp: { backgroundColor: "#fc9945" },
+  createIllustrations: { backgroundColor: "#dd39c0" },
+  productivityTools: { backgroundColor: "#3e16d1" },
+  createSlides: { backgroundColor: "#2323e4" },
 };
 
 const getCardStyle = (key: string, isDark: boolean): CSSProperties =>
@@ -204,6 +133,9 @@ const Apps = () => {
     () => window.matchMedia("(prefers-color-scheme: dark)").matches,
     []
   );
+
+  const [open, setOpen] = useState(false);
+  const [activeCard, setActiveCard] = useState<string | null>(null);
 
   const cards = [
     { key: "qa", title: "Q&A", light: qaLight, dark: qaDark },
@@ -251,6 +183,11 @@ const Apps = () => {
     },
   ];
 
+  const handleCardClick = (key: string) => {
+    setActiveCard(key);
+    setOpen(true);
+  };
+
   return (
     <IonPage>
       <IonHeader translucent>
@@ -268,6 +205,7 @@ const Apps = () => {
             {cards.map((card) => (
               <IonCol size="6" key={card.key} style={{ padding: "8px" }}>
                 <div
+                  onClick={() => handleCardClick(card.key)}
                   style={{
                     ...getCardStyle(card.key, isDark),
                     width: "100%",
@@ -278,6 +216,7 @@ const Apps = () => {
                     position: "relative",
                     display: "flex",
                     alignItems: "flex-start",
+                    cursor: "pointer",
                   }}
                 >
                   <span
@@ -285,7 +224,6 @@ const Apps = () => {
                       color: "#fff",
                       fontWeight: 600,
                       fontSize: "16px",
-                      lineHeight: "1.2",
                       zIndex: 2,
                     }}
                   >
@@ -297,7 +235,7 @@ const Apps = () => {
                     alt={card.title}
                     style={{
                       position: "absolute",
-                      right: "12px",
+                      right: "0px",
                       bottom: "12px",
                       height: "60%",
                       maxWidth: "65%",
@@ -309,6 +247,12 @@ const Apps = () => {
             ))}
           </IonRow>
         </IonGrid>
+
+        <AppModal
+          open={open}
+          onClose={() => setOpen(false)}
+          title={cards.find((c) => c.key === activeCard)?.title}
+        />
       </IonContent>
     </IonPage>
   );
