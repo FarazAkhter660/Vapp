@@ -33,6 +33,11 @@ const Sidebar = () => {
     router.push("/apps", "forward");
   };
 
+  const goToHome = () => {
+    setOpen(false);
+    router.push("/home", "forward");
+  };
+
   return (
     <>
       {open && (
@@ -47,7 +52,7 @@ const Sidebar = () => {
         </div>
 
         <div className="sidebar-actions">
-          <button className="sidebar-item">
+          <button className="sidebar-item" onClick={goToHome}>
             <IonIcon icon={addOutline} />
             <span>New chat</span>
           </button>

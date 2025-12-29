@@ -29,7 +29,6 @@ const Home = () => {
               <IonIcon icon={menuOutline} />
             </IonButton>
           </IonButtons>
-
           <div className="vera-logo">vera</div>
         </IonToolbar>
       </IonHeader>

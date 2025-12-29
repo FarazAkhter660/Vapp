@@ -1,6 +1,5 @@
 import { IonButton, IonIcon, IonTextarea } from "@ionic/react";
 import "./ChatInput.css";
-import darkArrow from "../../app/assets/darkArrow.svg";
 import attachment from "../../app/assets/attachment.svg";
 import arrow from "../../app/assets/arrow.svg";
 
@@ -15,18 +14,18 @@ const ChatInput = ({ onMessage }: ChatInputProps) => {
         <IonTextarea
           placeholder="Ask me anything..."
           autoGrow
+          rows={1}
           className="chat-textarea"
         />
-        <div className="attachments-row"></div>
 
         <div className="input-actions">
-          <IonButton fill="clear" className="attach-btn ">
+          <IonButton fill="clear" className="attach-btn">
             <IonIcon icon={attachment} />
             <span>Attach</span>
           </IonButton>
 
           <IonButton className="send-btn">
-            <IonIcon icon={arrow} className="my-custom-icon-size" />
+            <IonIcon icon={arrow} />
           </IonButton>
         </div>
       </div>

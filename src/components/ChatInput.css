@@ -2,81 +2,63 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  padding: 8px 12px calc(8px + var(--ion-safe-area-bottom));
 }
 
 .chat-input-container {
   width: 100%;
-  max-width: 600px;
-  background: #f8f9fb;
-  border-radius: 22px;
-  padding: 14px;
-  border: 1px solid #cccfd3;
-  box-shadow: 0 1.5px 11px rgba(78, 84, 93, 0.08);
-}
-
-@media (prefers-color-scheme: dark) {
-  .chat-input-container {
-    background: #1b1f24;
-    border-color: #4d5053;
-  }
+  max-width: 360px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 26px;
+  padding: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
 }
 
 .chat-textarea {
   --background: transparent;
   --padding-start: 0;
   --padding-end: 0;
-  --padding-top: 6px;
-  --padding-bottom: 6px;
-  color: #464a4d;
+  --padding-top: 4px;
+  --padding-bottom: 4px;
+  color: #e5e7eb;
   font-size: 15px;
 }
 
-@media (prefers-color-scheme: dark) {
-  .chat-textarea {
-    color: #c0c4cd;
-  }
-}
-
-.attachments-row {
-  display: flex;
-  gap: 8px;
-  margin-top: 8px;
+.chat-textarea::part(placeholder) {
+  color: #9ca3af;
 }
 
 .input-actions {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 8px;
+  margin-top: 14px;
 }
 
 .attach-btn {
-  --color: #919191;
+  --color: #e5e7eb;
+  background: rgba(255, 255, 255, 0.08);
   border-radius: 999px;
-  background: #eceff1;
-  height: 40px;
-  padding: 0 14px;
+  height: 38px;
+  padding: 0 16px;
+  font-size: 14px;
+  text-transform: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  .attach-btn {
-    background: #232629;
-    --color: #c0c7ce;
-  }
+.attach-btn ion-icon {
+  font-size: 18px;
+  margin-right: 6px;
 }
 
 .send-btn {
-  width: 56px;
-  height: 56px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
-  --background: #eceff1;
-  --color: #464a4d;
+  --background: #1f2937;
+  --color: #e5e7eb;
 }
 
-@media (prefers-color-scheme: dark) {
-  .send-btn {
-    --background: #232629;
-    --color: #d5d0c9;
-  }
+.send-btn ion-icon {
+  font-size: 20px;
 }
