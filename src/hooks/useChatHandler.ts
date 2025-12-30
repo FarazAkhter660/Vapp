@@ -1,6 +1,6 @@
 import { useCallback } from 'react'
 import { useHistory, useParams } from 'react-router-dom'
-import EdenClient from '../../lib/eden.client'
+import EdenClient from '../lib/eden.client'
 import { useChatStore } from '../stores/chats'
 
 export const useChatHandler = () => {

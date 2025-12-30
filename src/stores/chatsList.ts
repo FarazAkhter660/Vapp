@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import EdenClient from '../../lib/eden.client'
+import EdenClient from '../lib/eden.client'
 
 export interface ChatItem {
   id: string

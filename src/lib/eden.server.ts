@@ -5,9 +5,7 @@ interface ImportMetaEnv {
 }
 
 declare global {
-  interface ImportMeta {
-    readonly env: ImportMetaEnv;
-  }
+  // No need to redeclare ImportMeta, Vite already provides it.
 }
 
 const API_ENDPOINT =
