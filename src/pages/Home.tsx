@@ -13,6 +13,7 @@ import Sidebar from "../components/Sidebar";
 import ChatInput from "../components/ChatInput";
 import { useSidebar } from "../stores/sidebar";
 import { useChatHandler } from "../hooks/useChatHandler";
+import QuickActions from "../components/QuickActions";
 
 import "./Home.css";
 
@@ -41,6 +42,7 @@ const Home = () => {
             <h1>How can I help?</h1>
             <ChatInput onMessage={(text) => handleMessage(text)} />
           </div>
+          <QuickActions />
 
           <div className="discover-btn">Discover</div>
         </div>
