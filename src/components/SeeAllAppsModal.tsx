@@ -6,52 +6,86 @@ import {
   IonButtons,
   IonButton,
   IonIcon,
-} from '@ionic/react'
-import { closeOutline } from 'ionicons/icons'
-import useDarkMode from '../lib/useDarkMode'
+} from "@ionic/react";
+import { closeOutline } from "ionicons/icons";
+import useDarkMode from "../lib/useDarkMode";
 
-import taskGroup from '../../app/assets/taskGroup.svg'
-import graph from '../../app/assets/graph.svg'
-import article from '../../app/assets/article.svg'
-import url from '../../app/assets/url.svg'
-import edit from '../../app/assets/edit.svg'
-import excel from '../../app/assets/excel.svg'
-import itinerary from '../../app/assets/maps.svg'
+import taskGroup from "../../app/assets/taskGroup.svg";
+import graph from "../../app/assets/graph.svg";
+import article from "../../app/assets/article.svg";
+import url from "../../app/assets/url.svg";
+import edit from "../../app/assets/edit.svg";
+import excel from "../../app/assets/excel.svg";
+import itinerary from "../../app/assets/maps.svg";
 
-import analyzeLight from '../../app/assets/analyze-light.svg'
-import analyzeDark from '../../app/assets/analyze-dark.svg'
-import createLight from '../../app/assets/create-light.svg'
-import createDark from '../../app/assets/create-dark.svg'
-import assetLight from '../../app/assets/asset-light.svg'
-import assetDark from '../../app/assets/asset-dark.svg'
-import linkedinLight from '../../app/assets/linkedin-light.svg'
-import linkedinDark from '../../app/assets/linkedin-dark.svg'
+import analyzeLight from "../../app/assets/analyze-light.svg";
+import analyzeDark from "../../app/assets/analyze-dark.svg";
+import createLight from "../../app/assets/create-light.svg";
+import createDark from "../../app/assets/create-dark.svg";
+import assetLight from "../../app/assets/asset-light.svg";
+import assetDark from "../../app/assets/asset-dark.svg";
+import linkedinLight from "../../app/assets/linkedin-light.svg";
+import linkedinDark from "../../app/assets/linkedin-dark.svg";
 
 interface Props {
-  open: boolean
-  onClose: () => void
+  open: boolean;
+  onClose: () => void;
 }
 
 const SeeAllAppsModal = ({ open, onClose }: Props) => {
-  const dark = useDarkMode()
-  const isDark = dark.theme === 'dark'
+  const dark = useDarkMode();
+  const isDark = dark.theme === "dark";
 
-  const items = [
-    { label: 'Analyze Document', icon: isDark ? analyzeDark : analyzeLight },
-    { label: 'Create Image', icon: isDark ? createDark : createLight },
-    { label: 'Create Marketing Asset', icon: isDark ? assetDark : assetLight },
+  const apps = [
     {
-      label: 'Create LinkedIn Post',
-      icon: isDark ? linkedinDark : linkedinLight,
+      label: "Analyze Document",
+      icon: analyzeDark,
     },
-    { label: 'Create Quiz', icon: taskGroup },
-    { label: 'Create Graph', icon: graph },
-    { label: 'Write Article', icon: article },
-    { label: 'Analyze URL', icon: url },
-    { label: 'Edit Content', icon: edit },
-    { label: 'Excel Analysis', icon: excel },
-    { label: 'Create Itinerary', icon: itinerary },
-  ]
+    { label: "Create Image", icon: createDark },
+    { label: "Transform Image", icon: edit },
+    { label: "Create Quiz", icon: taskGroup },
+    { label: "Create Graph", icon: graph },
+    {
+      label: "Create Marketing Asset",
+      icon: assetDark,
+    },
+    {
+      label: "Create Linkedin Post",
+      icon: linkedinDark,
+    },
+
+    { label: "Create Article", icon: article },
+    { label: "Analyze URL", icon: url },
+
+    { label: "Excel Analysis", icon: excel },
+    { label: "Create Itinerary", icon: itinerary },
+  ];
+
+  const renderIcon = (
+    icon: string | { light: string; dark: string },
+    alt: string
+  ) => {
+    if (typeof icon === "string") {
+      return <img src={icon} alt={alt} style={{ width: 36, height: 36 }} />;
+    }
+
+    return (
+      <>
+        <img
+          src={icon.light}
+          alt={alt}
+          style={{ width: 36, height: 36 }}
+          className="ion-hide-dark"
+        />
+        <img
+          src={icon.dark}
+          alt={alt}
+          style={{ width: 36, height: 36 }}
+          className="ion-hide-light"
+        />
+      </>
+    );
+  };
 
   return (
     <IonModal
@@ -71,59 +105,63 @@ const SeeAllAppsModal = ({ open, onClose }: Props) => {
         </IonToolbar>
       </IonHeader>
 
-      <IonContent fullscreen>
+      <IonContent>
         <div
           style={{
             padding: 20,
-            display: 'grid',
-            gridTemplateColumns: 'repeat(3, 1fr)',
-            gap: 18,
+            display: "grid",
+            gridTemplateColumns: "repeat(3, 1fr)",
+            columnGap: 24,
+            rowGap: 24,
+            maxHeight: "60vh",
+            overflowY: "auto",
+            WebkitOverflowScrolling: "touch",
           }}
         >
-          {items.map((item) => (
+          {apps.map((app) => (
             <div
-              key={item.label}
+              key={app.label}
               style={{
-                background: isDark ? '#1f2328' : '#f2f4f7',
-                borderRadius: 16,
-                padding: 14,
-                textAlign: 'center',
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                textAlign: "center",
+                cursor: "pointer",
               }}
             >
               <div
                 style={{
-                  width: 56,
-                  height: 56,
-                  borderRadius: 14,
-                  margin: '0 auto 10px',
-                  background: isDark ? '#2a2f36' : '#e6e9ee',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
+                  width: 65,
+                  height: 65,
+                  borderRadius: 16,
+                  background: isDark ? "#23272e" : "#f5f7fa",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  marginBottom: 8,
+                  transition: "background 0.15s ease",
                 }}
               >
-                <img
-                  src={item.icon}
-                  alt={item.label}
-                  style={{ width: 28, height: 28 }}
-                />
+                {renderIcon(app.icon, app.label)}
               </div>
 
-              <div
+              <span
                 style={{
-                  fontSize: 13,
+                  fontSize: 12,
                   lineHeight: 1.2,
-                  color: isDark ? '#e5e7eb' : '#111827',
+                  color: isDark ? "#c0c7ce" : "#82858b",
+                  width: 72,
+                  wordBreak: "break-word",
                 }}
               >
-                {item.label}
-              </div>
+                {app.label}
+              </span>
             </div>
           ))}
         </div>
       </IonContent>
     </IonModal>
-  )
-}
+  );
+};
 
-export default SeeAllAppsModal
+export default SeeAllAppsModal;
