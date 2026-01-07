@@ -4,6 +4,7 @@ import { Route, Redirect } from "react-router-dom";
 
 import Home from "./pages/Home";
 import Apps from "./pages/Apps";
+import Chat from "./pages/Chat";
 
 import "@ionic/react/css/core.css";
 import "@ionic/react/css/normalize.css";
@@ -26,7 +27,7 @@ const App: React.FC = () => (
     <IonReactRouter>
       <IonRouterOutlet>
         <Route exact path="/home" component={Home} />
-        <Route exact path="/chat/:id" component={Home} />
+        <Route exact path="/chat/:id" component={Chat} />
         <Route exact path="/apps" component={Apps} />
 
         <Redirect exact from="/" to="/home" />

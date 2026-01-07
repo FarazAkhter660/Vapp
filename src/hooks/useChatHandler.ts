@@ -1,6 +1,5 @@
 import { useCallback } from 'react'
 import { useHistory, useParams } from 'react-router-dom'
-import EdenClient from '../lib/eden.client'
 import { useChatStore } from '../stores/chats'
 
 export const useChatHandler = () => {
@@ -8,29 +7,19 @@ export const useChatHandler = () => {
   const { id: chatId } = useParams<{ id?: string }>()
   const { addMessage } = useChatStore()
 
+  const defaultChatId = 'local'
+  const cannedAssistantReply =
+    "Hello! It's a pleasure to meet you. I am Vera, an AI assistant created by Vectrum.\n\nI am here to help you with a wide variety of tasks, whether you need information, help with problem-solving, creative writing, or even complex calculations. My goal is to be as helpful, informative, and detailed as possible.\n\nSince I have access to a variety of tools, I can also:\n- Perform complex math and data analysis using Python.\n- Generate detailed images based on your descriptions.\n- Provide in-depth explanations on almost any topic."
+
   const handleMessage = useCallback(
     async (text: string) => {
       if (!text.trim()) return
 
-      const chatApi = (EdenClient as any).chat
+      addMessage({ role: 'user', content: text })
+      addMessage({ role: 'assistant', content: cannedAssistantReply })
 
-      const response = chatId
-        ? await chatApi['conversation'].post({
-            chat: chatId,
-            message: text,
-          })
-        : await chatApi['new-conversation'].post({
-            message: text,
-          })
-
-      if (response.status !== 200 || !response.data) return
-
-      addMessage(text)
-
-      const newChatId = response.data.id ?? response.data.chat?.id
-
-      if (!chatId && newChatId) {
-        history.push(`/chat/${newChatId}`)
+      if (!chatId) {
+        history.push(`/chat/${defaultChatId}`)
       }
     },
     [chatId, history, addMessage]

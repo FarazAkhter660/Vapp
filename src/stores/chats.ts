@@ -1,8 +1,13 @@
 import { create } from 'zustand'
 
+export type ChatMessage = {
+  role: 'user' | 'assistant'
+  content: string
+}
+
 interface ChatState {
-  messages: string[]
-  addMessage: (msg: string) => void
+  messages: ChatMessage[]
+  addMessage: (msg: ChatMessage) => void
   clearMessages: () => void
 }
 

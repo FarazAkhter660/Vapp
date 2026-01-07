@@ -1,4 +1,5 @@
 import { IonButton, IonIcon, IonTextarea } from "@ionic/react";
+import { useState } from "react";
 import attachment from "../../app/assets/attachment.svg";
 import arrow from "../../app/assets/arrow.svg";
 
@@ -7,6 +8,14 @@ interface ChatInputProps {
 }
 
 const ChatInput = ({ onMessage }: ChatInputProps) => {
+  const [text, setText] = useState("");
+
+  const sendMessage = () => {
+    if (!text.trim()) return;
+    onMessage(text);
+    setText("");
+  };
+
   return (
     <div
       style={{
@@ -28,9 +37,17 @@ const ChatInput = ({ onMessage }: ChatInputProps) => {
         }}
       >
         <IonTextarea
+          value={text}
           placeholder="Ask me anything..."
           autoGrow
           rows={1}
+          onIonInput={(e) => setText(e.detail.value!)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" && !e.shiftKey) {
+              e.preventDefault();
+              sendMessage();
+            }
+          }}
           style={{
             "--background": "transparent",
             "--padding-start": "0",
@@ -64,15 +81,14 @@ const ChatInput = ({ onMessage }: ChatInputProps) => {
           >
             <IonIcon
               icon={attachment}
-              style={{
-                fontSize: "18px",
-                marginRight: "6px",
-              }}
+              style={{ fontSize: "18px", marginRight: "6px" }}
             />
             <span>Attach</span>
           </IonButton>
 
           <IonButton
+            onClick={sendMessage}
+            disabled={!text.trim()}
             style={{
               width: "48px",
               height: "48px",
@@ -81,12 +97,7 @@ const ChatInput = ({ onMessage }: ChatInputProps) => {
               "--color": "#e5e7eb",
             }}
           >
-            <IonIcon
-              icon={arrow}
-              style={{
-                fontSize: "20px",
-              }}
-            />
+            <IonIcon icon={arrow} style={{ fontSize: "20px" }} />
           </IonButton>
         </div>
       </div>
