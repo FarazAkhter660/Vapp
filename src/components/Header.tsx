@@ -6,11 +6,13 @@ import {
   IonIcon,
 } from "@ionic/react";
 import { menuOutline } from "ionicons/icons";
+import { useIonRouter } from "@ionic/react";
 import { useSidebar } from "../stores/sidebar";
 import veraLogo from "../../app/assets/darkVeraLogo.svg";
 
 const Header = () => {
   const { toggle } = useSidebar();
+  const router = useIonRouter();
 
   return (
     <IonHeader>
@@ -28,7 +30,7 @@ const Header = () => {
             <IonIcon
               icon={menuOutline}
               style={{
-                fontSize: "24px",
+                fontSize: "28px",
                 color: "#d1d5db",
               }}
             />
@@ -38,9 +40,11 @@ const Header = () => {
         <img
           src={veraLogo}
           alt="Vera Logo"
+          onClick={() => router.push("/home", "forward")}
           style={{
             height: "17px",
             marginLeft: "4px",
+            cursor: "pointer",
           }}
         />
 
@@ -48,8 +52,8 @@ const Header = () => {
           <IonButton>
             <div
               style={{
-                width: "36px",
-                height: "36px",
+                width: "25px",
+                height: "25px",
                 borderRadius: "50%",
                 background:
                   "linear-gradient(135deg, #a8b5ff 0%, #8ba3ff 50%, #6b8aff 100%)",
@@ -62,7 +66,6 @@ const Header = () => {
                 boxShadow: "0 4px 12px rgba(139, 163, 255, 0.3)",
               }}
             >
-              V
             </div>
           </IonButton>
         </IonButtons>

@@ -8,6 +8,7 @@ import {
 import { CSSProperties, useMemo, useState } from "react";
 import AppModal from "./AppModal";
 import Header from "../components/Header";
+import Sidebar from "../components/Sidebar";
 
 import qaLight from "../../app/assets/q&atest.svg";
 import qaDark from "../../app/assets/dark-q&a.svg";
@@ -189,6 +190,7 @@ const Apps = () => {
       <Header />
 
       <IonContent fullscreen>
+        <Sidebar />
         <IonGrid>
           <IonRow>
             {cards.map((card) => (
