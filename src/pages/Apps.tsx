@@ -1,17 +1,13 @@
 import {
   IonPage,
   IonContent,
-  IonHeader,
-  IonToolbar,
-  IonTitle,
-  IonButtons,
-  IonBackButton,
   IonGrid,
   IonRow,
   IonCol,
 } from "@ionic/react";
 import { CSSProperties, useMemo, useState } from "react";
 import AppModal from "./AppModal";
+import Header from "../components/Header";
 
 import qaLight from "../../app/assets/q&atest.svg";
 import qaDark from "../../app/assets/dark-q&a.svg";
@@ -190,14 +186,7 @@ const Apps = () => {
 
   return (
     <IonPage>
-      <IonHeader translucent>
-        <IonToolbar>
-          <IonButtons slot="start">
-            <IonBackButton defaultHref="/home" />
-          </IonButtons>
-          <IonTitle>Browse</IonTitle>
-        </IonToolbar>
-      </IonHeader>
+      <Header />
 
       <IonContent fullscreen>
         <IonGrid>

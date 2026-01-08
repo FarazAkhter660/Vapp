@@ -1,50 +1,17 @@
-import {
-  IonPage,
-  IonHeader,
-  IonToolbar,
-  IonButtons,
-  IonButton,
-  IonIcon,
-  IonContent,
-} from "@ionic/react";
-import { menuOutline } from "ionicons/icons";
+import { IonPage, IonContent } from "@ionic/react";
 
 import Sidebar from "../components/Sidebar";
+import Header from "../components/Header";
 import ChatInput from "../components/ChatInput";
 import QuickActions from "../components/QuickActions";
-import { useSidebar } from "../stores/sidebar";
 import { useChatHandler } from "../hooks/useChatHandler";
 
 const Home = () => {
-  const { open, toggle } = useSidebar();
   const { handleMessage } = useChatHandler();
 
   return (
     <IonPage>
-      <IonHeader>
-        <IonToolbar
-          style={{
-            "--background": "#0f1115",
-            "--color": "#e5e7eb",
-          }}
-        >
-          <IonButtons slot="start">
-            <IonButton onClick={toggle}>
-              <IonIcon icon={menuOutline} />
-            </IonButton>
-          </IonButtons>
-
-          <div
-            style={{
-              fontSize: "18px",
-              fontWeight: 600,
-              margin: "0 auto",
-            }}
-          >
-            vera
-          </div>
-        </IonToolbar>
-      </IonHeader>
+      <Header />
 
       <IonContent
         fullscreen

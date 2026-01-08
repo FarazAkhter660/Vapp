@@ -1,21 +1,12 @@
-import {
-  IonBackButton,
-  IonButton,
-  IonButtons,
-  IonContent,
-  IonHeader,
-  IonIcon,
-  IonPage,
-  IonToolbar,
-} from "@ionic/react";
-import { chevronDownOutline, menuOutline } from "ionicons/icons";
+import { IonContent, IonIcon, IonPage } from "@ionic/react";
+import { chevronDownOutline } from "ionicons/icons";
 import { useMemo } from "react";
 
 import ChatInput from "../components/ChatInput";
+import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
 import { useChatHandler } from "../hooks/useChatHandler";
 import { useChatStore } from "../stores/chats";
-import { useSidebar } from "../stores/sidebar";
 
 type Message = {
   id: string;
@@ -26,7 +17,6 @@ type Message = {
 const starterMessages: Message[] = [];
 
 const Chat = () => {
-  const { toggle } = useSidebar();
   const { handleMessage } = useChatHandler();
   const messages = useChatStore((state) => state.messages);
 
@@ -42,53 +32,7 @@ const Chat = () => {
 
   return (
     <IonPage>
-      <IonHeader>
-        <IonToolbar
-          style={{
-            "--background": "#060910",
-            "--color": "#e5e7eb",
-            borderBottom: "1px solid rgba(255,255,255,0.05)",
-          }}
-        >
-          <IonButtons slot="start" style={{ display: "flex", gap: "6px" }}>
-            <IonBackButton defaultHref="/" />
-            <IonButton onClick={toggle}>
-              <IonIcon icon={menuOutline} />
-            </IonButton>
-          </IonButtons>
-
-          <div
-            style={{
-              fontSize: "20px",
-              fontWeight: 700,
-              margin: "0 auto",
-              letterSpacing: "-0.3px",
-            }}
-          >
-            vera
-          </div>
-
-          <div
-            slot="end"
-            style={{
-              width: "36px",
-              height: "36px",
-              borderRadius: "12px",
-              background:
-                "linear-gradient(135deg, #5f8cff 0%, rgba(95,140,255,0.65) 100%)",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              color: "#0b1021",
-              fontWeight: 700,
-              fontSize: "14px",
-              boxShadow: "0 10px 30px rgba(95,140,255,0.35)",
-            }}
-          >
-            V
-          </div>
-        </IonToolbar>
-      </IonHeader>
+      <Header />
 
       <IonContent
         fullscreen
