@@ -126,12 +126,20 @@ const SeeAllAppsModal = ({ open, onClose }: Props) => {
                   width: 65,
                   height: 65,
                   borderRadius: 16,
-                  background: isDark ? "#23272e" : "#f5f7fa",
+                  background: isDark ? "#1b1f24" : "#f8f9fb",
+                  border: isDark ? "1px solid #303438" : "1px solid #e1e4e9",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
                   marginBottom: 8,
-                  transition: "background 0.15s ease",
+                  transition: "all 0.15s ease",
+                  cursor: "pointer",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = isDark ? "#3a3e42" : "#dfe0e1";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = isDark ? "#1b1f24" : "#f8f9fb";
                 }}
               >
                 {renderIcon(app.icon, app.label)}
@@ -141,7 +149,7 @@ const SeeAllAppsModal = ({ open, onClose }: Props) => {
                 style={{
                   fontSize: 12,
                   lineHeight: 1.2,
-                  color: isDark ? "#c0c7ce" : "#82858b",
+                  color: isDark ? "#c0c7ce" : "#7c8694",
                   width: 72,
                   wordBreak: "break-word",
                 }}

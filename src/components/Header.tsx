@@ -9,6 +9,7 @@ import { menuOutline } from "ionicons/icons";
 import { useIonRouter } from "@ionic/react";
 import { useSidebar } from "../stores/sidebar";
 import useDarkMode from "../lib/useDarkMode";
+
 import veraLogoDark from "../../app/assets/darkVeraLogo.svg";
 import veraLogoLight from "../../app/assets/vera-logo.svg";
 
@@ -16,31 +17,33 @@ const Header = () => {
   const { toggle } = useSidebar();
   const router = useIonRouter();
   const dark = useDarkMode();
-  const isDark = dark.theme === 'dark';
+  const isDark = dark.theme === "dark";
 
   return (
     <IonHeader>
       <IonToolbar
         style={{
-          "--background": isDark ? "#0f1115" : "#ffffff",
-          "--color": isDark ? "#e5e7eb" : "#111827",
-          borderBottom: isDark ? "none" : "1px solid #e5e7eb",
+          "--background": isDark ? "#16181c" : "#ffffff",
+          "--color": isDark ? "#c0c7ce" : "#111827",
+          borderBottom: isDark ? "1px solid #303438" : "1px solid #e1e4e9",
           display: "flex",
           alignItems: "center",
         }}
       >
+        {/* LEFT */}
         <IonButtons slot="start">
           <IonButton onClick={toggle}>
             <IonIcon
               icon={menuOutline}
               style={{
                 fontSize: "28px",
-                color: isDark ? "#d1d5db" : "#6b7280",
+                color: isDark ? "#c0c7ce" : "#7c8694",
               }}
             />
           </IonButton>
         </IonButtons>
 
+        {/* LOGO */}
         <img
           src={isDark ? veraLogoDark : veraLogoLight}
           alt="Vera Logo"
@@ -52,7 +55,9 @@ const Header = () => {
           }}
         />
 
+        {/* RIGHT */}
         <IonButtons slot="end">
+          {/* AVATAR */}
           <IonButton>
             <div
               style={{
@@ -69,8 +74,7 @@ const Header = () => {
                 fontSize: "16px",
                 boxShadow: "0 4px 12px rgba(139, 163, 255, 0.3)",
               }}
-            >
-            </div>
+            />
           </IonButton>
         </IonButtons>
       </IonToolbar>

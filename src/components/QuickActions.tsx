@@ -51,7 +51,7 @@ const QuickActions = () => {
             style={{
               width: 72,
               textAlign: 'center',
-              color: isDark ? '#cfd3da' : '#6b7280',
+              color: isDark ? '#c0c7ce' : '#7c8694',
             }}
           >
             <div
@@ -65,20 +65,30 @@ const QuickActions = () => {
                 height: 60,
                 borderRadius: 18,
                 background: isDark 
-                  ? 'rgba(255,255,255,0.06)' 
-                  : 'rgba(0,0,0,0.04)',
+                  ? '#1b1f24' 
+                  : '#f8f9fb',
+                border: isDark ? '1px solid #303438' : '1px solid #e1e4e9',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 margin: '0 auto 8px',
                 cursor: action.isSeeAll ? 'pointer' : 'default',
+                transition: 'all 0.15s ease',
+              }}
+              onMouseEnter={(e) => {
+                if (!action.isSeeAll) return;
+                e.currentTarget.style.background = isDark ? '#3a3e42' : '#dfe0e1';
+              }}
+              onMouseLeave={(e) => {
+                if (!action.isSeeAll) return;
+                e.currentTarget.style.background = isDark ? '#1b1f24' : '#f8f9fb';
               }}
             >
               {action.isSeeAll ? (
                 <span
                   style={{
                     fontSize: 12,
-                    color: isDark ? '#9ca3af' : '#6b7280',
+                    color: isDark ? '#c0c7ce' : '#7c8694',
                     fontWeight: 500,
                   }}
                 >

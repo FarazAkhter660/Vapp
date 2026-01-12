@@ -1,2 +1,176 @@
 /* For information on how to create your own theme, please refer to:
 http://ionicframework.com/docs/theming/ */
+
+/* Color Variables */
+:root {
+  /* Light Mode Colors */
+  --light-bg-primary: #eff3f7;
+  --light-bg-secondary: #edf1f5;
+  --light-bg-tertiary: #f8f9fb;
+  --light-bg-quaternary: #e8edef;
+  --light-border: #e1e4e9;
+  --light-text-primary: #7c8694;
+  --light-text-secondary: #111827; /* text-gray-900 */
+  --light-text-tertiary: #374151; /* text-gray-700 */
+  --light-hover-primary: #c0c7ce;
+  --light-hover-secondary: #dfe0e1;
+  --light-link: #325f75;
+
+  /* Dark Mode Colors */
+  --dark-bg-primary: #16181c;
+  --dark-bg-secondary: #1b1f24;
+  --dark-bg-tertiary: #2a2e30;
+  --dark-border: #303438;
+  --dark-text-primary: #c0c7ce;
+  --dark-text-secondary: #ffffff;
+  --dark-text-tertiary: #d1d5db; /* text-gray-300 */
+  --dark-hover-primary: #3a3e42;
+  --dark-hover-secondary: #2a2e30;
+  --dark-link: #7cb9d1;
+}
+
+/* Markdown Styles */
+.markdown-content,
+[class*="markdown"],
+.prose {
+  /* Headings */
+  h1, h2, h3, h4, h5, h6 {
+    color: #111827; /* text-gray-900 */
+    font-weight: 600;
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+  }
+
+  h1 { font-size: 2em; }
+  h2 { font-size: 1.5em; }
+  h3 { font-size: 1.25em; }
+  h4 { font-size: 1.125em; }
+  h5 { font-size: 1em; }
+  h6 { font-size: 0.875em; }
+
+  /* Paragraphs and Lists */
+  p, li {
+    color: #374151; /* text-gray-700 */
+    line-height: 1.6;
+    margin-bottom: 1em;
+  }
+
+  ul, ol {
+    color: #374151; /* text-gray-700 */
+    margin-left: 1.5em;
+    margin-bottom: 1em;
+  }
+
+  /* Code */
+  code {
+    background-color: #f3f4f6; /* bg-gray-100 */
+    padding: 0.125rem 0.375rem;
+    border-radius: 0.25rem;
+    font-size: 0.875em;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+  }
+
+  pre {
+    background-color: #f3f4f6; /* bg-gray-100 */
+    padding: 1rem;
+    border-radius: 0.5rem;
+    overflow-x: auto;
+    margin-bottom: 1em;
+  }
+
+  pre code {
+    background: transparent;
+    padding: 0;
+  }
+
+  /* Blockquote */
+  blockquote {
+    border-left: 4px solid var(--light-link);
+    padding-left: 1rem;
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 1em;
+    color: #374151; /* text-gray-700 */
+  }
+
+  /* Links */
+  a {
+    color: var(--light-link);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  a:hover {
+    opacity: 0.8;
+  }
+}
+
+/* Dark mode markdown styles */
+.dark .markdown-content h1,
+.dark .markdown-content h2,
+.dark .markdown-content h3,
+.dark .markdown-content h4,
+.dark .markdown-content h5,
+.dark .markdown-content h6,
+.dark [class*="markdown"] h1,
+.dark [class*="markdown"] h2,
+.dark [class*="markdown"] h3,
+.dark [class*="markdown"] h4,
+.dark [class*="markdown"] h5,
+.dark [class*="markdown"] h6,
+.dark .prose h1,
+.dark .prose h2,
+.dark .prose h3,
+.dark .prose h4,
+.dark .prose h5,
+.dark .prose h6 {
+  color: #ffffff; /* white */
+}
+
+.dark .markdown-content p,
+.dark .markdown-content li,
+.dark [class*="markdown"] p,
+.dark [class*="markdown"] li,
+.dark .prose p,
+.dark .prose li {
+  color: #d1d5db; /* text-gray-300 */
+}
+
+.dark .markdown-content ul,
+.dark .markdown-content ol,
+.dark [class*="markdown"] ul,
+.dark [class*="markdown"] ol,
+.dark .prose ul,
+.dark .prose ol {
+  color: #d1d5db; /* text-gray-300 */
+}
+
+.dark .markdown-content code,
+.dark [class*="markdown"] code,
+.dark .prose code {
+  background-color: #1f2937; /* dark:bg-gray-800 */
+}
+
+.dark .markdown-content pre,
+.dark [class*="markdown"] pre,
+.dark .prose pre {
+  background-color: #1f2937; /* dark:bg-gray-800 */
+}
+
+.dark .markdown-content blockquote,
+.dark [class*="markdown"] blockquote,
+.dark .prose blockquote {
+  border-left-color: var(--dark-link);
+  color: #d1d5db; /* text-gray-300 */
+}
+
+.dark .markdown-content a,
+.dark [class*="markdown"] a,
+.dark .prose a {
+  color: var(--dark-link);
+}
+
+/* Apply markdown styles to any element with markdown content */
+[data-markdown] {
+  /* Inherit markdown-content styles */
+}

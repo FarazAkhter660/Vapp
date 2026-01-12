@@ -11,7 +11,7 @@ interface ChatInputProps {
 const ChatInput = ({ onMessage }: ChatInputProps) => {
   const [text, setText] = useState("");
   const dark = useDarkMode();
-  const isDark = dark.theme === 'dark';
+  const isDark = dark.theme === "dark";
 
   const sendMessage = () => {
     if (!text.trim()) return;
@@ -27,24 +27,21 @@ const ChatInput = ({ onMessage }: ChatInputProps) => {
         justifyContent: "center",
       }}
     >
+      {/* CONTAINER */}
       <div
         style={{
           width: "100%",
           maxWidth: "360px",
-          background: isDark 
-            ? "rgba(255, 255, 255, 0.05)" 
-            : "rgba(255, 255, 255, 0.8)",
+          background: isDark ? "#1b1f24" : "#ffffff",
           borderRadius: "26px",
           padding: "16px",
-          border: isDark 
-            ? "1px solid rgba(255, 255, 255, 0.15)" 
-            : "1px solid rgba(0, 0, 0, 0.1)",
-          backdropFilter: "blur(14px)",
-          boxShadow: isDark 
-            ? "0 10px 30px rgba(0, 0, 0, 0.35)" 
-            : "0 10px 30px rgba(0, 0, 0, 0.1)",
+          border: isDark ? "1px solid #303438" : "1px solid #e1e4e9",
+          boxShadow: isDark
+            ? "0 12px 30px rgba(0,0,0,0.45)"
+            : "0 10px 24px rgba(0,0,0,0.08)",
         }}
       >
+        {/* TEXTAREA */}
         <IonTextarea
           value={text}
           placeholder="Ask me anything..."
@@ -63,11 +60,12 @@ const ChatInput = ({ onMessage }: ChatInputProps) => {
             "--padding-end": "0",
             "--padding-top": "4px",
             "--padding-bottom": "4px",
-            color: isDark ? "#e5e7eb" : "#111827",
+            color: isDark ? "#c0c7ce" : "#111827",
             fontSize: "15px",
           }}
         />
 
+        {/* ACTIONS */}
         <div
           style={{
             display: "flex",
@@ -76,13 +74,12 @@ const ChatInput = ({ onMessage }: ChatInputProps) => {
             marginTop: "14px",
           }}
         >
+          {/* ATTACH (SECONDARY) */}
           <IonButton
             fill="clear"
             style={{
-              "--color": isDark ? "#e5e7eb" : "#111827",
-              background: isDark 
-                ? "rgba(255, 255, 255, 0.08)" 
-                : "rgba(0, 0, 0, 0.05)",
+              "--color": isDark ? "#c0c7ce" : "#374151",
+              background: isDark ? "#2a2e30" : "#f8f9fb",
               borderRadius: "999px",
               height: "38px",
               padding: "0 16px",
@@ -92,20 +89,28 @@ const ChatInput = ({ onMessage }: ChatInputProps) => {
           >
             <IonIcon
               icon={attachment}
-              style={{ fontSize: "18px", marginRight: "6px" }}
+              style={{
+                fontSize: "18px",
+                marginRight: "6px",
+                opacity: isDark ? 1 : 0.8,
+              }}
             />
             <span>Attach</span>
           </IonButton>
 
+          {/* SEND (PRIMARY) */}
           <IonButton
             onClick={sendMessage}
             disabled={!text.trim()}
             style={{
-              width: "48px",
-              height: "48px",
+              width: "44px",
+              height: "44px",
               borderRadius: "50%",
               "--background": isDark ? "#1f2937" : "#111827",
-              "--color": isDark ? "#e5e7eb" : "#ffffff",
+              "--color": "#ffffff",
+              boxShadow: isDark
+                ? "0 6px 14px rgba(0,0,0,0.4)"
+                : "0 4px 10px rgba(0,0,0,0.2)",
             }}
           >
             <IonIcon icon={arrow} style={{ fontSize: "20px" }} />

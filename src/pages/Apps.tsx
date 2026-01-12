@@ -205,8 +205,8 @@ const Apps = () => {
       <IonContent 
         fullscreen
         style={{
-          "--background": isDark ? "#0f1115" : "#ffffff",
-          color: isDark ? "#e5e7eb" : "#111827",
+          "--background": isDark ? "#16181c" : "#edf1f5",
+          color: isDark ? "#c0c7ce" : "#111827",
         }}
       >
         <Sidebar />

@@ -76,7 +76,7 @@ const AppModal = ({ open, onClose, title, category }: AppModalProps) => {
               <p style={{ 
                 textAlign: "center", 
                 opacity: 0.6,
-                color: isDark ? "#e5e7eb" : "#111827",
+                color: isDark ? "#c0c7ce" : "#111827",
               }}>
                 No apps found.
               </p>
@@ -92,8 +92,16 @@ const AppModal = ({ open, onClose, title, category }: AppModalProps) => {
                     padding: "14px",
                     marginBottom: "12px",
                     borderRadius: "14px",
-                    background: isDark ? "#1f2326" : "#f3f4f6",
+                    background: isDark ? "#1b1f24" : "#f8f9fb",
+                    border: isDark ? "1px solid #303438" : "1px solid #e1e4e9",
                     cursor: "pointer",
+                    transition: "all 0.15s ease",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background = isDark ? "#3a3e42" : "#dfe0e1";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = isDark ? "#1b1f24" : "#f8f9fb";
                   }}
                 >
                   <div
@@ -109,7 +117,7 @@ const AppModal = ({ open, onClose, title, category }: AppModalProps) => {
                         width: 44,
                         height: 44,
                         borderRadius: 12,
-                        background: isDark ? "#2a2e30" : "#e5e7eb",
+                        background: isDark ? "#2a2e30" : "#e8edef",
                         display: "flex",
                         alignItems: "center",
                         justifyContent: "center",
@@ -133,7 +141,7 @@ const AppModal = ({ open, onClose, title, category }: AppModalProps) => {
                           fontSize: 15,
                           fontWeight: 600,
                           lineHeight: 1.2,
-                          color: isDark ? "#e5e7eb" : "#111827",
+                          color: isDark ? "#c0c7ce" : "#111827",
                         }}
                       >
                         {app.name}
@@ -148,7 +156,7 @@ const AppModal = ({ open, onClose, title, category }: AppModalProps) => {
                           WebkitLineClamp: 2,
                           WebkitBoxOrient: "vertical",
                           overflow: "hidden",
-                          color: isDark ? "#e5e7eb" : "#111827",
+                          color: isDark ? "#c0c7ce" : "#111827",
                         }}
                       >
                         {app.description}

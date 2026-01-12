@@ -62,9 +62,9 @@ const Sidebar = () => {
           height: "100vh",
           width: "230px",
           background: isDark 
-            ? "linear-gradient(180deg, #0f1215, #14181d)"
-            : "linear-gradient(180deg, #ffffff, #f9fafb)",
-          color: isDark ? "#e6e6e6" : "#111827",
+            ? "#16181c"
+            : "#eff3f7",
+          color: isDark ? "#c0c7ce" : "#111827",
           transform: open ? "translateX(0)" : "translateX(-100%)",
           transition: "transform 0.25s ease",
           zIndex: 1001,
@@ -86,7 +86,7 @@ const Sidebar = () => {
             style={{
               background: "none",
               border: "none",
-              color: isDark ? "#9aa0a6" : "#6b7280",
+              color: isDark ? "#c0c7ce" : "#7c8694",
               fontSize: "20px",
               cursor: "pointer",
             }}
@@ -107,12 +107,26 @@ const Sidebar = () => {
           <button
             onClick={goToHome}
             style={getSidebarItemStyle(isDark)}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = isDark ? "#3a3e42" : "#dfe0e1";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = isDark ? "#1b1f24" : "#f8f9fb";
+            }}
           >
             <IonIcon icon={addOutline} style={getSidebarIconStyle(isDark)} />
             <span>New chat</span>
           </button>
 
-          <button style={getSidebarItemStyle(isDark)}>
+          <button 
+            style={getSidebarItemStyle(isDark)}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = isDark ? "#3a3e42" : "#dfe0e1";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = isDark ? "#1b1f24" : "#f8f9fb";
+            }}
+          >
             <IonIcon icon={searchOutline} style={getSidebarIconStyle(isDark)} />
             <span>Search chats</span>
           </button>
@@ -120,6 +134,12 @@ const Sidebar = () => {
           <button
             onClick={goToApps}
             style={getSidebarItemStyle(isDark)}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = isDark ? "#3a3e42" : "#dfe0e1";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = isDark ? "#1b1f24" : "#f8f9fb";
+            }}
           >
             <IonIcon icon={appsOutline} style={getSidebarIconStyle(isDark)} />
             <span>Apps</span>
@@ -135,14 +155,32 @@ const Sidebar = () => {
         >
           <p style={getSectionStyle(isDark)}>Today</p>
           {todayChats.map((chat, i) => (
-            <div key={i} style={getChatItemStyle(isDark)}>
+            <div 
+              key={i} 
+              style={getChatItemStyle(isDark)}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = isDark ? "#3a3e42" : "#dfe0e1";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = isDark ? "#1b1f24" : "#f8f9fb";
+              }}
+            >
               {chat}
             </div>
           ))}
 
           <p style={getSectionStyle(isDark)}>Previous 30 days</p>
           {previousChats.map((chat, i) => (
-            <div key={i} style={getChatItemStyle(isDark)}>
+            <div 
+              key={i} 
+              style={getChatItemStyle(isDark)}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = isDark ? "#3a3e42" : "#dfe0e1";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = isDark ? "#1b1f24" : "#f8f9fb";
+              }}
+            >
               {chat}
             </div>
           ))}
@@ -159,36 +197,39 @@ const getSidebarItemStyle = (isDark: boolean): React.CSSProperties => ({
   gap: "12px",
   padding: "14px 16px",
   borderRadius: "16px",
-  background: isDark ? "#1b2026" : "#f3f4f6",
-  color: isDark ? "#e6e6e6" : "#111827",
-  border: isDark ? "1px solid #242a31" : "1px solid #e5e7eb",
+  background: isDark ? "#1b1f24" : "#f8f9fb",
+  color: isDark ? "#c0c7ce" : "#111827",
+  border: isDark ? "1px solid #303438" : "1px solid #e1e4e9",
   fontSize: "15px",
   cursor: "pointer",
+  transition: "all 0.15s ease",
 });
 
 const getSidebarIconStyle = (isDark: boolean): React.CSSProperties => ({
   fontSize: "18px",
-  color: isDark ? "#cbd5e1" : "#6b7280",
+  color: isDark ? "#c0c7ce" : "#7c8694",
 });
 
 const getSectionStyle = (isDark: boolean): React.CSSProperties => ({
   margin: "14px 0 8px",
   fontSize: "13px",
   fontWeight: 600,
-  color: isDark ? "#9aa0a6" : "#6b7280",
+  color: isDark ? "#c0c7ce" : "#7c8694",
 });
 
 const getChatItemStyle = (isDark: boolean): React.CSSProperties => ({
-  background: isDark ? "#1b2026" : "#f3f4f6",
-  border: isDark ? "1px solid #242a31" : "1px solid #e5e7eb",
+  background: isDark ? "#1b1f24" : "#f8f9fb",
+  border: isDark ? "1px solid #303438" : "1px solid #e1e4e9",
   borderRadius: "14px",
   padding: "12px 14px",
   fontSize: "14px",
-  color: isDark ? "#e6e6e6" : "#111827",
+  color: isDark ? "#c0c7ce" : "#111827",
   marginBottom: "8px",
   whiteSpace: "nowrap",
   overflow: "hidden",
   textOverflow: "ellipsis",
+  transition: "all 0.15s ease",
+  cursor: "pointer",
 });
 
 export default Sidebar;

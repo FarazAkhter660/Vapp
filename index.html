@@ -13,6 +13,7 @@
     />
     <meta name="format-detection" content="telephone=no" />
     <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="theme-color" content="#edf1f5" />
     
     <link rel="manifest" href="/manifest.json" />
     
@@ -22,6 +23,23 @@
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-title" content="Ionic App" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    
+    <!-- Pre-hydration script to prevent flash -->
+    <script>
+      (function() {
+        const stored = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const isDark = stored === 'dark' || (!stored && prefersDark);
+        
+        if (isDark) {
+          document.documentElement.classList.add('dark');
+          const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+          if (metaThemeColor) {
+            metaThemeColor.setAttribute('content', '#16181c');
+          }
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

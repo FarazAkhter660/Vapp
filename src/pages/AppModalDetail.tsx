@@ -50,18 +50,19 @@ const AppModalDetail = ({
       <IonContent 
         fullscreen
         style={{
-          "--background": isDark ? "#0f1115" : "#ffffff",
-          color: isDark ? "#e5e7eb" : "#111827",
+          "--background": isDark ? "#16181c" : "#edf1f5",
+          color: isDark ? "#c0c7ce" : "#111827",
         }}
       >
         <div style={{ padding: "16px" }}>
           <p
+            className="markdown-content"
             style={{
               fontSize: "15px",
               lineHeight: 1.6,
               opacity: 0.85,
               marginBottom: "24px",
-              color: isDark ? "#e5e7eb" : "#111827",
+              color: isDark ? "#c0c7ce" : "#111827",
             }}
           >
             {description}

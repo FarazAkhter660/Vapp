@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { IonPage, IonContent } from "@ionic/react";
 
 import Sidebar from "../components/Sidebar";
@@ -14,7 +13,7 @@ import { Sun, Moon } from "@phosphor-icons/react";
 const Home = () => {
   const { handleMessage } = useChatHandler();
   const dark = useDarkMode();
-  const [hover, setHover] = useState(false);
+  const isDark = dark.theme === "dark";
 
   return (
     <IonPage>
@@ -23,8 +22,8 @@ const Home = () => {
       <IonContent
         fullscreen
         style={{
-          "--background": dark.theme === "light" ? "#ffffff" : "#0f1115",
-          color: dark.theme === "light" ? "#111827" : "#e5e7eb",
+          "--background": isDark ? "#16181c" : "#edf1f5",
+          color: isDark ? "#c0c7ce" : "#111827",
         }}
       >
         <Sidebar />
@@ -38,35 +37,36 @@ const Home = () => {
         >
           <button
             onClick={dark.toggleTheme}
-            onMouseEnter={() => setHover(true)}
-            onMouseLeave={() => setHover(false)}
+            aria-label="Toggle theme"
             style={{
-              width: "44px",
-              height: "36px",
-              borderRadius: "50%",
-              border: "none",
+              width: "40px",
+              height: "32px",
+              borderRadius: "999px",
+              border: isDark ? "none" : "1px solid #e1e4e9",
               cursor: "pointer",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
 
-              background:
-                dark.theme === "light"
-                  ? "radial-gradient(120% 120% at 30% 20%, #f2f4f6 0%, #e2e6ea 45%, #cfd5db 100%)"
-                  : "radial-gradient(120% 120% at 30% 20%, #2f3438 0%, #23272b 45%, #1b1f23 100%)",
+              background: isDark ? "#2a2e30" : "#f8f9fb",
 
-              boxShadow:
-                dark.theme === "light"
-                  ? "inset 0 1px 1px rgba(255,255,255,0.6), 0 6px 14px rgba(0,0,0,0.15)"
-                  : "inset 0 1px 1px rgba(255,255,255,0.08), 0 8px 18px rgba(0,0,0,0.55)",
+              boxShadow: isDark
+                ? "inset 0 1px 1px rgba(255,255,255,0.08), 0 8px 18px rgba(0,0,0,0.45)"
+                : "0 1px 2px rgba(0,0,0,0.08)",
 
-              transition: "all 0.25s ease",
+              transition: "all 0.2s ease",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = isDark ? "#3a3e42" : "#dfe0e1";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = isDark ? "#2a2e30" : "#f8f9fb";
             }}
           >
-            {dark.theme === "light" ? (
-              <Sun size={20} color="#7c8694" />
+            {isDark ? (
+              <Moon size={17} color="#c0c7ce" />
             ) : (
-              <Moon size={20} color="#c9ced6" />
+              <Sun size={17} color="#7c8694" />
             )}
           </button>
         </div>
@@ -95,31 +95,47 @@ const Home = () => {
           >
             <h1
               style={{
-                fontSize: "32px",
+                fontSize: "38px",
                 fontWeight: 500,
                 margin: 0,
+                color: isDark ? "#c0c7ce" : "#7c8694",
               }}
             >
               How can I help?
             </h1>
 
-            <ChatInput onMessage={(text) => handleMessage(text)} />
+            <div
+              style={{
+                width: "100%",
+                background: isDark ? "#1b1f24" : "#ffffff",
+                border: isDark ? "1px solid #303438" : "1px solid #e1e4e9",
+                borderRadius: "24px",
+                boxShadow: isDark
+                  ? "0 12px 30px rgba(0,0,0,0.5)"
+                  : "0 10px 24px rgba(0,0,0,0.08)",
+              }}
+            >
+              <ChatInput onMessage={(text) => handleMessage(text)} />
+            </div>
           </div>
+
           <QuickActions />
+
           <div
             style={{
               position: "fixed",
               bottom: "24px",
               left: "50%",
               transform: "translateX(-50%)",
-              background: dark.theme === "light" ? "#f3f4f6" : "#14171c",
-              color: dark.theme === "light" ? "#111827" : "#e5e7eb",
+              background: isDark ? "#1b1f24" : "#ffffff",
+              color: isDark ? "#c0c7ce" : "#111827",
               padding: "10px 18px",
               borderRadius: "20px",
               fontSize: "14px",
-              boxShadow: dark.theme === "light" 
-                ? "0 6px 16px rgba(0,0,0,0.1)" 
-                : "0 6px 16px rgba(0,0,0,0.4)",
+              border: isDark ? "1px solid #303438" : "1px solid #e1e4e9",
+              boxShadow: isDark
+                ? "0 6px 16px rgba(0,0,0,0.4)"
+                : "0 6px 16px rgba(0,0,0,0.12)",
               zIndex: 10,
               display: "flex",
               alignItems: "center",
