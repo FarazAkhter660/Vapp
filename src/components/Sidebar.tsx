@@ -6,10 +6,13 @@ import {
   appsOutline,
 } from "ionicons/icons";
 import { useSidebar } from "../stores/sidebar";
+import useDarkMode from "../lib/useDarkMode";
 
 const Sidebar = () => {
   const { open, setOpen } = useSidebar();
   const router = useIonRouter();
+  const dark = useDarkMode();
+  const isDark = dark.theme === 'dark';
 
   const todayChats = ["Increase Ionic Icon Size"];
 
@@ -45,7 +48,7 @@ const Sidebar = () => {
           style={{
             position: "fixed",
             inset: 0,
-            background: "rgba(0,0,0,0.4)",
+            background: isDark ? "rgba(0,0,0,0.4)" : "rgba(0,0,0,0.2)",
             zIndex: 1000,
           }}
         />
@@ -58,8 +61,10 @@ const Sidebar = () => {
           left: 0,
           height: "100vh",
           width: "230px",
-          background: "linear-gradient(180deg, #0f1215, #14181d)",
-          color: "#e6e6e6",
+          background: isDark 
+            ? "linear-gradient(180deg, #0f1215, #14181d)"
+            : "linear-gradient(180deg, #ffffff, #f9fafb)",
+          color: isDark ? "#e6e6e6" : "#111827",
           transform: open ? "translateX(0)" : "translateX(-100%)",
           transition: "transform 0.25s ease",
           zIndex: 1001,
@@ -81,7 +86,7 @@ const Sidebar = () => {
             style={{
               background: "none",
               border: "none",
-              color: "#9aa0a6",
+              color: isDark ? "#9aa0a6" : "#6b7280",
               fontSize: "20px",
               cursor: "pointer",
             }}
@@ -101,22 +106,22 @@ const Sidebar = () => {
         >
           <button
             onClick={goToHome}
-            style={sidebarItemStyle}
+            style={getSidebarItemStyle(isDark)}
           >
-            <IonIcon icon={addOutline} style={sidebarIconStyle} />
+            <IonIcon icon={addOutline} style={getSidebarIconStyle(isDark)} />
             <span>New chat</span>
           </button>
 
-          <button style={sidebarItemStyle}>
-            <IonIcon icon={searchOutline} style={sidebarIconStyle} />
+          <button style={getSidebarItemStyle(isDark)}>
+            <IonIcon icon={searchOutline} style={getSidebarIconStyle(isDark)} />
             <span>Search chats</span>
           </button>
 
           <button
             onClick={goToApps}
-            style={sidebarItemStyle}
+            style={getSidebarItemStyle(isDark)}
           >
-            <IonIcon icon={appsOutline} style={sidebarIconStyle} />
+            <IonIcon icon={appsOutline} style={getSidebarIconStyle(isDark)} />
             <span>Apps</span>
           </button>
         </div>
@@ -128,16 +133,16 @@ const Sidebar = () => {
             paddingRight: "4px",
           }}
         >
-          <p style={sectionStyle}>Today</p>
+          <p style={getSectionStyle(isDark)}>Today</p>
           {todayChats.map((chat, i) => (
-            <div key={i} style={chatItemStyle}>
+            <div key={i} style={getChatItemStyle(isDark)}>
               {chat}
             </div>
           ))}
 
-          <p style={sectionStyle}>Previous 30 days</p>
+          <p style={getSectionStyle(isDark)}>Previous 30 days</p>
           {previousChats.map((chat, i) => (
-            <div key={i} style={chatItemStyle}>
+            <div key={i} style={getChatItemStyle(isDark)}>
               {chat}
             </div>
           ))}
@@ -147,43 +152,43 @@ const Sidebar = () => {
   );
 };
 
-/* 🔹 Reusable inline styles */
-const sidebarItemStyle: React.CSSProperties = {
+/* 🔹 Reusable inline styles - will be made dynamic */
+const getSidebarItemStyle = (isDark: boolean): React.CSSProperties => ({
   display: "flex",
   alignItems: "center",
   gap: "12px",
   padding: "14px 16px",
   borderRadius: "16px",
-  background: "#1b2026",
-  color: "#e6e6e6",
-  border: "1px solid #242a31",
+  background: isDark ? "#1b2026" : "#f3f4f6",
+  color: isDark ? "#e6e6e6" : "#111827",
+  border: isDark ? "1px solid #242a31" : "1px solid #e5e7eb",
   fontSize: "15px",
   cursor: "pointer",
-};
+});
 
-const sidebarIconStyle: React.CSSProperties = {
+const getSidebarIconStyle = (isDark: boolean): React.CSSProperties => ({
   fontSize: "18px",
-  color: "#cbd5e1",
-};
+  color: isDark ? "#cbd5e1" : "#6b7280",
+});
 
-const sectionStyle: React.CSSProperties = {
+const getSectionStyle = (isDark: boolean): React.CSSProperties => ({
   margin: "14px 0 8px",
   fontSize: "13px",
   fontWeight: 600,
-  color: "#9aa0a6",
-};
+  color: isDark ? "#9aa0a6" : "#6b7280",
+});
 
-const chatItemStyle: React.CSSProperties = {
-  background: "#1b2026",
-  border: "1px solid #242a31",
+const getChatItemStyle = (isDark: boolean): React.CSSProperties => ({
+  background: isDark ? "#1b2026" : "#f3f4f6",
+  border: isDark ? "1px solid #242a31" : "1px solid #e5e7eb",
   borderRadius: "14px",
   padding: "12px 14px",
   fontSize: "14px",
-  color: "#e6e6e6",
+  color: isDark ? "#e6e6e6" : "#111827",
   marginBottom: "8px",
   whiteSpace: "nowrap",
   overflow: "hidden",
   textOverflow: "ellipsis",
-};
+});
 
 export default Sidebar;

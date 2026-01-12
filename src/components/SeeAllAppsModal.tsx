@@ -39,24 +39,25 @@ const SeeAllAppsModal = ({ open, onClose }: Props) => {
   const apps = [
     {
       label: "Analyze Document",
-      icon: analyzeDark,
+      icon: { light: analyzeLight, dark: analyzeDark },
     },
-    { label: "Create Image", icon: createDark },
+    { 
+      label: "Create Image", 
+      icon: { light: createLight, dark: createDark },
+    },
     { label: "Transform Image", icon: edit },
     { label: "Create Quiz", icon: taskGroup },
     { label: "Create Graph", icon: graph },
     {
       label: "Create Marketing Asset",
-      icon: assetDark,
+      icon: { light: assetLight, dark: assetDark },
     },
     {
       label: "Create Linkedin Post",
-      icon: linkedinDark,
+      icon: { light: linkedinLight, dark: linkedinDark },
     },
-
     { label: "Create Article", icon: article },
     { label: "Analyze URL", icon: url },
-
     { label: "Excel Analysis", icon: excel },
     { label: "Create Itinerary", icon: itinerary },
   ];
@@ -70,20 +71,11 @@ const SeeAllAppsModal = ({ open, onClose }: Props) => {
     }
 
     return (
-      <>
-        <img
-          src={icon.light}
-          alt={alt}
-          style={{ width: 36, height: 36 }}
-          className="ion-hide-dark"
-        />
-        <img
-          src={icon.dark}
-          alt={alt}
-          style={{ width: 36, height: 36 }}
-          className="ion-hide-light"
-        />
-      </>
+      <img
+        src={isDark ? icon.dark : icon.light}
+        alt={alt}
+        style={{ width: 36, height: 36 }}
+      />
     );
   };
 

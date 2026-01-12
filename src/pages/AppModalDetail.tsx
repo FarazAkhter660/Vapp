@@ -9,6 +9,7 @@ import {
   IonContent,
 } from "@ionic/react";
 import { arrowBack, close } from "ionicons/icons";
+import useDarkMode from "../lib/useDarkMode";
 
 interface AppModalDetailProps {
   open: boolean;
@@ -25,6 +26,9 @@ const AppModalDetail = ({
   description,
   website,
 }: AppModalDetailProps) => {
+  const dark = useDarkMode();
+  const isDark = dark.theme === 'dark';
+
   return (
     <IonModal isOpen={open} onDidDismiss={onClose}>
       <IonHeader translucent>
@@ -43,7 +47,13 @@ const AppModalDetail = ({
         </IonToolbar>
       </IonHeader>
 
-      <IonContent fullscreen>
+      <IonContent 
+        fullscreen
+        style={{
+          "--background": isDark ? "#0f1115" : "#ffffff",
+          color: isDark ? "#e5e7eb" : "#111827",
+        }}
+      >
         <div style={{ padding: "16px" }}>
           <p
             style={{
@@ -51,6 +61,7 @@ const AppModalDetail = ({
               lineHeight: 1.6,
               opacity: 0.85,
               marginBottom: "24px",
+              color: isDark ? "#e5e7eb" : "#111827",
             }}
           >
             {description}

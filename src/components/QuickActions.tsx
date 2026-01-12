@@ -1,4 +1,4 @@
-import {useMemo, useState} from 'react'
+import {useState} from 'react'
 import analyzeLight from '../../app/assets/analyze-light.svg'
 import analyzeDark from '../../app/assets/analyze-dark.svg'
 import createLight from '../../app/assets/create-light.svg'
@@ -6,14 +6,12 @@ import createDark from '../../app/assets/create-dark.svg'
 import assetLight from '../../app/assets/asset-light.svg'
 import assetDark from '../../app/assets/asset-dark.svg'
 import SeeAllAppsModal from './SeeAllAppsModal'
+import useDarkMode from '../lib/useDarkMode'
 
 const QuickActions = () => {
   const [open, setOpen] = useState(false)
-
-  const isDark = useMemo(
-    () => window.matchMedia('(prefers-color-scheme: dark)').matches,
-    []
-  )
+  const dark = useDarkMode()
+  const isDark = dark.theme === 'dark'
 
   const actions = [
     {
@@ -53,7 +51,7 @@ const QuickActions = () => {
             style={{
               width: 72,
               textAlign: 'center',
-              color: '#cfd3da',
+              color: isDark ? '#cfd3da' : '#6b7280',
             }}
           >
             <div
@@ -66,7 +64,9 @@ const QuickActions = () => {
                 width: 60,
                 height: 60,
                 borderRadius: 18,
-                background: 'rgba(255,255,255,0.06)',
+                background: isDark 
+                  ? 'rgba(255,255,255,0.06)' 
+                  : 'rgba(0,0,0,0.04)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -78,7 +78,7 @@ const QuickActions = () => {
                 <span
                   style={{
                     fontSize: 12,
-                    color: '#9ca3af',
+                    color: isDark ? '#9ca3af' : '#6b7280',
                     fontWeight: 500,
                   }}
                 >

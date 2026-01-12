@@ -5,10 +5,11 @@ import {
   IonRow,
   IonCol,
 } from "@ionic/react";
-import { CSSProperties, useMemo, useState } from "react";
+import { CSSProperties, useState } from "react";
 import AppModal from "./AppModal";
 import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
+import useDarkMode from "../lib/useDarkMode";
 
 import qaLight from "../../app/assets/q&atest.svg";
 import qaDark from "../../app/assets/dark-q&a.svg";
@@ -126,13 +127,23 @@ const getCardStyle = (key: string, isDark: boolean): CSSProperties =>
   isDark ? darkCardStyles[key] || {} : cardStyles[key] || {};
 
 const Apps = () => {
-  const isDark = useMemo(
-    () => window.matchMedia("(prefers-color-scheme: dark)").matches,
-    []
-  );
+  const dark = useDarkMode();
+  const isDark = dark.theme === 'dark';
 
   const [open, setOpen] = useState(false);
   const [activeCard, setActiveCard] = useState<string | null>(null);
+
+  // Map cards to backend categories
+  const categoryMap: Record<string, string> = {
+    qa: "q&a",
+    generateImage: "generate-image",
+    resumeBuilder: "resume-builder",
+    videoGeneration: "video-gen",
+    createApp: "create-app",
+    createIllustrations: "create-illustrations",
+    productivityTools: "productivity-tools",
+    createSlides: "slides",
+  };
 
   const cards = [
     { key: "qa", title: "Q&A", light: qaLight, dark: qaDark },
@@ -185,11 +196,19 @@ const Apps = () => {
     setOpen(true);
   };
 
+  const activeCategory = activeCard ? categoryMap[activeCard] ?? null : null;
+
   return (
     <IonPage>
       <Header />
 
-      <IonContent fullscreen>
+      <IonContent 
+        fullscreen
+        style={{
+          "--background": isDark ? "#0f1115" : "#ffffff",
+          color: isDark ? "#e5e7eb" : "#111827",
+        }}
+      >
         <Sidebar />
         <IonGrid>
           <IonRow>
@@ -243,6 +262,7 @@ const Apps = () => {
           open={open}
           onClose={() => setOpen(false)}
           title={cards.find((c) => c.key === activeCard)?.title}
+          category={activeCategory}
         />
       </IonContent>
     </IonPage>

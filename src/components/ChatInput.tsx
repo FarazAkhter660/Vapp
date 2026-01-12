@@ -2,6 +2,7 @@ import { IonButton, IonIcon, IonTextarea } from "@ionic/react";
 import { useState } from "react";
 import attachment from "../../app/assets/attachment.svg";
 import arrow from "../../app/assets/arrow.svg";
+import useDarkMode from "../lib/useDarkMode";
 
 interface ChatInputProps {
   onMessage: (message: string) => void;
@@ -9,6 +10,8 @@ interface ChatInputProps {
 
 const ChatInput = ({ onMessage }: ChatInputProps) => {
   const [text, setText] = useState("");
+  const dark = useDarkMode();
+  const isDark = dark.theme === 'dark';
 
   const sendMessage = () => {
     if (!text.trim()) return;
@@ -28,12 +31,18 @@ const ChatInput = ({ onMessage }: ChatInputProps) => {
         style={{
           width: "100%",
           maxWidth: "360px",
-          background: "rgba(255, 255, 255, 0.05)",
+          background: isDark 
+            ? "rgba(255, 255, 255, 0.05)" 
+            : "rgba(255, 255, 255, 0.8)",
           borderRadius: "26px",
           padding: "16px",
-          border: "1px solid rgba(255, 255, 255, 0.15)",
+          border: isDark 
+            ? "1px solid rgba(255, 255, 255, 0.15)" 
+            : "1px solid rgba(0, 0, 0, 0.1)",
           backdropFilter: "blur(14px)",
-          boxShadow: "0 10px 30px rgba(0, 0, 0, 0.35)",
+          boxShadow: isDark 
+            ? "0 10px 30px rgba(0, 0, 0, 0.35)" 
+            : "0 10px 30px rgba(0, 0, 0, 0.1)",
         }}
       >
         <IonTextarea
@@ -54,7 +63,7 @@ const ChatInput = ({ onMessage }: ChatInputProps) => {
             "--padding-end": "0",
             "--padding-top": "4px",
             "--padding-bottom": "4px",
-            color: "#e5e7eb",
+            color: isDark ? "#e5e7eb" : "#111827",
             fontSize: "15px",
           }}
         />
@@ -70,8 +79,10 @@ const ChatInput = ({ onMessage }: ChatInputProps) => {
           <IonButton
             fill="clear"
             style={{
-              "--color": "#e5e7eb",
-              background: "rgba(255, 255, 255, 0.08)",
+              "--color": isDark ? "#e5e7eb" : "#111827",
+              background: isDark 
+                ? "rgba(255, 255, 255, 0.08)" 
+                : "rgba(0, 0, 0, 0.05)",
               borderRadius: "999px",
               height: "38px",
               padding: "0 16px",
@@ -93,8 +104,8 @@ const ChatInput = ({ onMessage }: ChatInputProps) => {
               width: "48px",
               height: "48px",
               borderRadius: "50%",
-              "--background": "#1f2937",
-              "--color": "#e5e7eb",
+              "--background": isDark ? "#1f2937" : "#111827",
+              "--color": isDark ? "#e5e7eb" : "#ffffff",
             }}
           >
             <IonIcon icon={arrow} style={{ fontSize: "20px" }} />

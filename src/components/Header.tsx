@@ -8,19 +8,23 @@ import {
 import { menuOutline } from "ionicons/icons";
 import { useIonRouter } from "@ionic/react";
 import { useSidebar } from "../stores/sidebar";
-import veraLogo from "../../app/assets/darkVeraLogo.svg";
+import useDarkMode from "../lib/useDarkMode";
+import veraLogoDark from "../../app/assets/darkVeraLogo.svg";
+import veraLogoLight from "../../app/assets/vera-logo.svg";
 
 const Header = () => {
   const { toggle } = useSidebar();
   const router = useIonRouter();
+  const dark = useDarkMode();
+  const isDark = dark.theme === 'dark';
 
   return (
     <IonHeader>
       <IonToolbar
         style={{
-          "--background": "#0f1115",
-          "--color": "#e5e7eb",
-          borderBottom: "none",
+          "--background": isDark ? "#0f1115" : "#ffffff",
+          "--color": isDark ? "#e5e7eb" : "#111827",
+          borderBottom: isDark ? "none" : "1px solid #e5e7eb",
           display: "flex",
           alignItems: "center",
         }}
@@ -31,14 +35,14 @@ const Header = () => {
               icon={menuOutline}
               style={{
                 fontSize: "28px",
-                color: "#d1d5db",
+                color: isDark ? "#d1d5db" : "#6b7280",
               }}
             />
           </IonButton>
         </IonButtons>
 
         <img
-          src={veraLogo}
+          src={isDark ? veraLogoDark : veraLogoLight}
           alt="Vera Logo"
           onClick={() => router.push("/home", "forward")}
           style={{
