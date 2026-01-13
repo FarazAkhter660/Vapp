@@ -10,14 +10,20 @@ import {
 import { closeOutline } from "ionicons/icons";
 import useDarkMode from "../lib/useDarkMode";
 
-import taskGroup from "../../app/assets/taskGroup.svg";
-import graph from "../../app/assets/graph.svg";
-import article from "../../app/assets/article.svg";
-import url from "../../app/assets/url.svg";
-import edit from "../../app/assets/edit.svg";
-import excel from "../../app/assets/excel.svg";
-import itinerary from "../../app/assets/maps.svg";
-
+import quizLight from "../../app/assets/quiz-light.svg";
+import quizDark from "../../app/assets/quiz-dark.svg";
+import graphLight from "../../app/assets/graph-light.svg";
+import graphDark from "../../app/assets/graph-dark.svg";
+import articleLight from "../../app/assets/article-light.svg";
+import articleDark from "../../app/assets/article-dark.svg";
+import urlLight from "../../app/assets/url-light.svg";
+import urlDark from "../../app/assets/url-dark.svg";
+import editLight from "../../app/assets/edit-image-light.svg";
+import editDark from "../../app/assets/edit-image-dark.svg";
+import excelLight from "../../app/assets/excel-light.svg";
+import excelDark from "../../app/assets/excel-dark.svg";
+import itineraryLight from "../../app/assets/itinerary-light.svg";
+import itineraryDark from "../../app/assets/itinerary-dark.svg";
 import analyzeLight from "../../app/assets/analyze-light.svg";
 import analyzeDark from "../../app/assets/analyze-dark.svg";
 import createLight from "../../app/assets/create-light.svg";
@@ -37,47 +43,21 @@ const SeeAllAppsModal = ({ open, onClose }: Props) => {
   const isDark = dark.theme === "dark";
 
   const apps = [
-    {
-      label: "Analyze Document",
-      icon: { light: analyzeLight, dark: analyzeDark },
-    },
-    { 
-      label: "Create Image", 
-      icon: { light: createLight, dark: createDark },
-    },
-    { label: "Transform Image", icon: edit },
-    { label: "Create Quiz", icon: taskGroup },
-    { label: "Create Graph", icon: graph },
-    {
-      label: "Create Marketing Asset",
-      icon: { light: assetLight, dark: assetDark },
-    },
-    {
-      label: "Create Linkedin Post",
-      icon: { light: linkedinLight, dark: linkedinDark },
-    },
-    { label: "Create Article", icon: article },
-    { label: "Analyze URL", icon: url },
-    { label: "Excel Analysis", icon: excel },
-    { label: "Create Itinerary", icon: itinerary },
+    { label: "Analyze Document", icon: { light: analyzeLight, dark: analyzeDark } },
+    { label: "Create Image", icon: { light: createLight, dark: createDark } },
+    { label: "Transform Image", icon: { light: editLight, dark: editDark } },
+    { label: "Create Quiz", icon: { light: quizLight, dark: quizDark } },
+    { label: "Create Graph", icon: { light: graphLight, dark: graphDark } },
+    { label: "Create Marketing Asset", icon: { light: assetLight, dark: assetDark } },
+    { label: "Create Linkedin Post", icon: { light: linkedinLight, dark: linkedinDark } },
+    { label: "Create Article", icon: { light: articleLight, dark: articleDark } },
+    { label: "Analyze URL", icon: { light: urlLight, dark: urlDark } },
+    { label: "Excel Analysis", icon: { light: excelLight, dark: excelDark } },
+    { label: "Create Itinerary", icon: { light: itineraryLight, dark: itineraryDark } },
   ];
 
-  const renderIcon = (
-    icon: string | { light: string; dark: string },
-    alt: string
-  ) => {
-    if (typeof icon === "string") {
-      return <img src={icon} alt={alt} style={{ width: 36, height: 36 }} />;
-    }
-
-    return (
-      <img
-        src={isDark ? icon.dark : icon.light}
-        alt={alt}
-        style={{ width: 36, height: 36 }}
-      />
-    );
-  };
+  const resolveIcon = (icon: { light: string; dark: string }) =>
+    isDark ? icon.dark : icon.light;
 
   return (
     <IonModal
@@ -88,26 +68,36 @@ const SeeAllAppsModal = ({ open, onClose }: Props) => {
       handleBehavior="cycle"
     >
       <IonHeader translucent>
-        <IonToolbar>
+        <IonToolbar
+          style={{
+            "--background": isDark ? "#0f1216" : "#ffffff",
+            "--color": isDark ? "#e5e7eb" : "#111827",
+          }}
+        >
           <IonButtons slot="end">
             <IonButton onClick={onClose}>
-              <IonIcon icon={closeOutline} />
+              <IonIcon
+                icon={closeOutline}
+                style={{ color: isDark ? "#c0c7ce" : "#374151" }}
+              />
             </IonButton>
           </IonButtons>
         </IonToolbar>
       </IonHeader>
 
-      <IonContent>
+      <IonContent
+        style={{
+          "--background": isDark ? "#0f1216" : "#ffffff",
+        }}
+      >
         <div
           style={{
             padding: 20,
             display: "grid",
             gridTemplateColumns: "repeat(3, 1fr)",
-            columnGap: 24,
-            rowGap: 24,
+            gap: 24,
             maxHeight: "60vh",
             overflowY: "auto",
-            WebkitOverflowScrolling: "touch",
           }}
         >
           {apps.map((app) => (
@@ -118,7 +108,6 @@ const SeeAllAppsModal = ({ open, onClose }: Props) => {
                 flexDirection: "column",
                 alignItems: "center",
                 textAlign: "center",
-                cursor: "pointer",
               }}
             >
               <div
@@ -132,17 +121,14 @@ const SeeAllAppsModal = ({ open, onClose }: Props) => {
                   alignItems: "center",
                   justifyContent: "center",
                   marginBottom: 8,
-                  transition: "all 0.15s ease",
-                  cursor: "pointer",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.background = isDark ? "#3a3e42" : "#dfe0e1";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.background = isDark ? "#1b1f24" : "#f8f9fb";
+                  transition: "background 0.15s ease",
                 }}
               >
-                {renderIcon(app.icon, app.label)}
+                <img
+                  src={resolveIcon(app.icon)}
+                  alt={app.label}
+                  style={{ width: 36, height: 36 }}
+                />
               </div>
 
               <span
@@ -151,7 +137,6 @@ const SeeAllAppsModal = ({ open, onClose }: Props) => {
                   lineHeight: 1.2,
                   color: isDark ? "#c0c7ce" : "#7c8694",
                   width: 72,
-                  wordBreak: "break-word",
                 }}
               >
                 {app.label}
