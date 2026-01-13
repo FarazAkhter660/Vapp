@@ -23,10 +23,11 @@ const Home = () => {
         fullscreen
         style={{
           "--background": isDark ? "#16181c" : "#edf1f5",
-          color: isDark ? "#c0c7ce" : "#111827",
+          color: isDark ? "#c0c7ce" : "#374151",
         }}
       >
         <Sidebar />
+
         <div
           style={{
             position: "fixed",
@@ -42,25 +43,16 @@ const Home = () => {
               width: "40px",
               height: "32px",
               borderRadius: "999px",
-              border: isDark ? "none" : "1px solid #e1e4e9",
+              border: isDark ? "1px solid #36393d" : "1px solid #cccfd3",
               cursor: "pointer",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-
-              background: isDark ? "#2a2e30" : "#f8f9fb",
-
+              background: isDark ? "#232629" : "#eceff1",
               boxShadow: isDark
-                ? "inset 0 1px 1px rgba(255,255,255,0.08), 0 8px 18px rgba(0,0,0,0.45)"
-                : "0 1px 2px rgba(0,0,0,0.08)",
-
+                ? "0 1.5px 11px 1.5px rgba(112,116,120,0.1)"
+                : "0 1.5px 11px 1.5px rgba(78,84,93,0.05)",
               transition: "all 0.2s ease",
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.background = isDark ? "#3a3e42" : "#dfe0e1";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.background = isDark ? "#2a2e30" : "#f8f9fb";
             }}
           >
             {isDark ? (
@@ -107,7 +99,7 @@ const Home = () => {
             <div
               style={{
                 width: "100%",
-                background: isDark ? "#1b1f24" : "#ffffff",
+                background: isDark ? "#1b1f24" : "#f8f9fb",
                 border: isDark ? "1px solid #303438" : "1px solid #e1e4e9",
                 borderRadius: "24px",
                 boxShadow: isDark
@@ -127,8 +119,8 @@ const Home = () => {
               bottom: "24px",
               left: "50%",
               transform: "translateX(-50%)",
-              background: isDark ? "#1b1f24" : "#ffffff",
-              color: isDark ? "#c0c7ce" : "#111827",
+              background: isDark ? "#1b1f24" : "#f8f9fb",
+              color: isDark ? "#c0c7ce" : "#374151",
               padding: "10px 18px",
               borderRadius: "20px",
               fontSize: "14px",
