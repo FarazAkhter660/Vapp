@@ -37,6 +37,47 @@ const Sidebar = () => {
     router.push("/home", "forward");
   };
 
+  const getSidebarItemStyle = (isDark: boolean): React.CSSProperties => ({
+    display: "flex",
+    alignItems: "center",
+    gap: "12px",
+    padding: "14px 16px",
+    borderRadius: "16px",
+    background: isDark ? "#1b1f24" : "#f8f9fb",
+    color: isDark ? "#c0c7ce" : "#111827",
+    border: isDark ? "1px solid #303438" : "1px solid #e1e4e9",
+    fontSize: "15px",
+    cursor: "pointer",
+    transition: "all 0.15s ease",
+  });
+
+  const getSidebarIconStyle = (isDark: boolean): React.CSSProperties => ({
+    fontSize: "18px",
+    color: isDark ? "#c0c7ce" : "#7c8694",
+  });
+
+  const getSectionStyle = (isDark: boolean): React.CSSProperties => ({
+    margin: "14px 0 8px",
+    fontSize: "13px",
+    fontWeight: 600,
+    color: isDark ? "#c0c7ce" : "#7c8694",
+  });
+
+  const getChatItemStyle = (isDark: boolean): React.CSSProperties => ({
+    background: isDark ? "#1b1f24" : "#f8f9fb",
+    border: isDark ? "1px solid #303438" : "1px solid #e1e4e9",
+    borderRadius: "14px",
+    padding: "12px 14px",
+    fontSize: "14px",
+    color: isDark ? "#c0c7ce" : "#111827",
+    marginBottom: "8px",
+    whiteSpace: "nowrap",
+    overflow: "hidden",
+    textOverflow: "ellipsis",
+    transition: "all 0.15s ease",
+    cursor: "pointer",
+  });
+
   return (
     <>
       {open && (
@@ -192,46 +233,5 @@ const Sidebar = () => {
     </>
   );
 };
-
-const getSidebarItemStyle = (isDark: boolean): React.CSSProperties => ({
-  display: "flex",
-  alignItems: "center",
-  gap: "12px",
-  padding: "14px 16px",
-  borderRadius: "16px",
-  background: isDark ? "#1b1f24" : "#f8f9fb",
-  color: isDark ? "#c0c7ce" : "#111827",
-  border: isDark ? "1px solid #303438" : "1px solid #e1e4e9",
-  fontSize: "15px",
-  cursor: "pointer",
-  transition: "all 0.15s ease",
-});
-
-const getSidebarIconStyle = (isDark: boolean): React.CSSProperties => ({
-  fontSize: "18px",
-  color: isDark ? "#c0c7ce" : "#7c8694",
-});
-
-const getSectionStyle = (isDark: boolean): React.CSSProperties => ({
-  margin: "14px 0 8px",
-  fontSize: "13px",
-  fontWeight: 600,
-  color: isDark ? "#c0c7ce" : "#7c8694",
-});
-
-const getChatItemStyle = (isDark: boolean): React.CSSProperties => ({
-  background: isDark ? "#1b1f24" : "#f8f9fb",
-  border: isDark ? "1px solid #303438" : "1px solid #e1e4e9",
-  borderRadius: "14px",
-  padding: "12px 14px",
-  fontSize: "14px",
-  color: isDark ? "#c0c7ce" : "#111827",
-  marginBottom: "8px",
-  whiteSpace: "nowrap",
-  overflow: "hidden",
-  textOverflow: "ellipsis",
-  transition: "all 0.15s ease",
-  cursor: "pointer",
-});
 
 export default Sidebar;
