@@ -30,6 +30,7 @@ const Header = () => {
             "--color": isDark ? "#c0c7ce" : "#374151",
             display: "flex",
             alignItems: "center",
+            minHeight: "56px",
           }}
         >
           <IonButtons slot="start">
