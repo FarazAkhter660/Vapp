@@ -1,18 +1,15 @@
 import { IonIcon, useIonRouter } from "@ionic/react";
-import {
-  closeOutline,
-  addOutline,
-  searchOutline,
-  appsOutline,
-} from "ionicons/icons";
+import { closeOutline, addOutline, searchOutline } from "ionicons/icons";
 import { useSidebar } from "../stores/sidebar";
 import useDarkMode from "../lib/useDarkMode";
+import AppIconLight from "../../app/assets/appstore.svg";
+import AppIconDark from "../../app/assets/darkAppStore.svg";
 
 const Sidebar = () => {
   const { open, setOpen } = useSidebar();
   const router = useIonRouter();
   const dark = useDarkMode();
-  const isDark = dark.theme === 'dark';
+  const isDark = dark.theme === "dark";
 
   const todayChats = ["Increase Ionic Icon Size"];
 
@@ -61,9 +58,7 @@ const Sidebar = () => {
           left: 0,
           height: "100vh",
           width: "230px",
-          background: isDark 
-            ? "#16181c"
-            : "#eff3f7",
+          background: isDark ? "#16181c" : "#eff3f7",
           color: isDark ? "#c0c7ce" : "#111827",
           transform: open ? "translateX(0)" : "translateX(-100%)",
           transition: "transform 0.25s ease",
@@ -73,7 +68,6 @@ const Sidebar = () => {
           padding: "16px",
         }}
       >
-        {/* Header */}
         <div
           style={{
             display: "flex",
@@ -95,7 +89,6 @@ const Sidebar = () => {
           </button>
         </div>
 
-        {/* Actions */}
         <div
           style={{
             display: "flex",
@@ -118,7 +111,7 @@ const Sidebar = () => {
             <span>New chat</span>
           </button>
 
-          <button 
+          <button
             style={getSidebarItemStyle(isDark)}
             onMouseEnter={(e) => {
               e.currentTarget.style.background = isDark ? "#3a3e42" : "#dfe0e1";
@@ -141,12 +134,14 @@ const Sidebar = () => {
               e.currentTarget.style.background = isDark ? "#1b1f24" : "#f8f9fb";
             }}
           >
-            <IonIcon icon={appsOutline} style={getSidebarIconStyle(isDark)} />
+            <IonIcon
+              icon={isDark ? AppIconDark : AppIconLight}
+              style={getSidebarIconStyle(isDark)}
+            />
             <span>Apps</span>
           </button>
         </div>
 
-        {/* Chat list */}
         <div
           style={{
             overflowY: "auto",
@@ -155,14 +150,18 @@ const Sidebar = () => {
         >
           <p style={getSectionStyle(isDark)}>Today</p>
           {todayChats.map((chat, i) => (
-            <div 
-              key={i} 
+            <div
+              key={i}
               style={getChatItemStyle(isDark)}
               onMouseEnter={(e) => {
-                e.currentTarget.style.background = isDark ? "#3a3e42" : "#dfe0e1";
+                e.currentTarget.style.background = isDark
+                  ? "#3a3e42"
+                  : "#dfe0e1";
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.background = isDark ? "#1b1f24" : "#f8f9fb";
+                e.currentTarget.style.background = isDark
+                  ? "#1b1f24"
+                  : "#f8f9fb";
               }}
             >
               {chat}
@@ -171,14 +170,18 @@ const Sidebar = () => {
 
           <p style={getSectionStyle(isDark)}>Previous 30 days</p>
           {previousChats.map((chat, i) => (
-            <div 
-              key={i} 
+            <div
+              key={i}
               style={getChatItemStyle(isDark)}
               onMouseEnter={(e) => {
-                e.currentTarget.style.background = isDark ? "#3a3e42" : "#dfe0e1";
+                e.currentTarget.style.background = isDark
+                  ? "#3a3e42"
+                  : "#dfe0e1";
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.background = isDark ? "#1b1f24" : "#f8f9fb";
+                e.currentTarget.style.background = isDark
+                  ? "#1b1f24"
+                  : "#f8f9fb";
               }}
             >
               {chat}
@@ -190,7 +193,6 @@ const Sidebar = () => {
   );
 };
 
-/* 🔹 Reusable inline styles - will be made dynamic */
 const getSidebarItemStyle = (isDark: boolean): React.CSSProperties => ({
   display: "flex",
   alignItems: "center",
