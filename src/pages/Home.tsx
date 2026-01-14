@@ -7,7 +7,8 @@ import QuickActions from "../components/QuickActions";
 import { useChatHandler } from "../hooks/useChatHandler";
 import useDarkMode from "../lib/useDarkMode";
 
-import discover from "../../app/assets/discover.svg";
+import discoverDark from "../../app/assets/discover.svg";
+import discoverLight from "../../app/assets/discoverlight.svg";
 import { Sun, Moon } from "@phosphor-icons/react";
 
 const Home = () => {
@@ -135,7 +136,7 @@ const Home = () => {
             }}
           >
             <img
-              src={discover}
+              src={isDark ? discoverDark : discoverLight}
               alt="Discover"
               style={{
                 height: "18px",
